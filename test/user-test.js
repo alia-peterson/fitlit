@@ -24,4 +24,9 @@ describe('User', () => {
     expect(user1).to.be.an.instanceof(User)
   })
 
+  it('should return user first name', () => {
+    const firstName = user1.returnFirstName()
+    expect(firstName).to.equal('Clark')
+  })
+
 })
