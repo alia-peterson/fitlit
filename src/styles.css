@@ -1,0 +1,54 @@
+* {
+  border: 1px solid pink;
+}
+
+body, html {
+  font-family: "Open Sans", sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  min-width: 340px;
+  border-color: black;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.box--xsmall {
+  height: 45px;
+}
+
+.box--small {
+  height: 110px;
+}
+
+.box--medium {
+  height: 380px;
+}
+
+.box--large {
+  height: 175px;
+}
+
+.container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.dashboard {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
