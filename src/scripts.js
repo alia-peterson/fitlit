@@ -1,13 +1,13 @@
 let userRepository = new UserRepository()
 const welcomeMessage = document.querySelector('.user--welcome')
-const userName = document.querySelector('#user--name')
-const userAddress = document.querySelector('#user--address')
-const userEmail = document.querySelector('#user--email')
-const userStrideLength = document.querySelector('#user--stride')
-const userStepGoal = document.querySelector('#user--step')
-const groupAverageStepGoal = document.querySelector('#group--step')
+const userName = document.querySelector('.user--name')
+const userAddress = document.querySelector('.user--address')
+const userEmail = document.querySelector('.user--email')
+const userStrideLength = document.querySelector('.user--stride')
+const userStepGoal = document.querySelectorAll('.user--step')
+const groupAverageStepGoal = document.querySelector('.group--step')
 const groupList = document.querySelector('.group--list')
-const todaysDate = document.querySelector('#date')
+const todaysDate = document.querySelector('.date')
 
 window.addEventListener('load', ( event ) => {
   createUserRepository()
@@ -36,7 +36,7 @@ function populateGroupList() {
   })
 }
 
-function populateUserInfo·rmation() {
+function populateUserInformation() {
   userRepository.currentUser = userRepository.users.find( user => {
     return user.name === groupList.value
   })
@@ -47,8 +47,11 @@ function populateUserInfo·rmation() {
   userAddress.innerText = `Address: ${currentUser.address}`
   userEmail.innerText = `Email: ${currentUser.email}`
   userStrideLength.innerText = `Stride Length: ${currentUser.strideLength}-ft`
-  userStepGoal.innerText = `Daily Step Goal: ${currentUser.dailyStepGoal} steps`
-  groupAverageStepGoal.innerText = `Average Step Goal for All Users: `
+  groupAverageStepGoal.innerText = `Average Step Goal for All Users: ·${userRepository.calculateAverageStepGoal()} steps`
+
+  userStepGoal.forEach( goal => {
+    goal.innerText = `Daily Step Goal: ${currentUser.dailyStepGoal} steps`
+  })
 }
 
 function populateDate() {
