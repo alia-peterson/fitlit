@@ -9,6 +9,9 @@
   </head>
   <body>
     <section class="dashboard">
+      <select class="group--list" name="">
+        <option value=""></option>
+      </select>·
       <header class="header">
         <h1>Good Morning, Jarvis!</h1>
         <article class="container box--xsmall">
@@ -17,17 +20,17 @@
       </header>
       <section class="user--information">
         <article class="container box--small">
-          <p>Name: </p>
-          <p>Address: </p>
-          <p>Email: </p>
+          <p id="user--name">Name: </p>
+          <p id="user--address">Address: </p>
+          <p id="user--email">Email: </p>
         </article>
         <article class="container box--small">
-          <p>Stride Length</p>
-          <p>Daily Step Goal</p>
+          <p id="user--stride">Stride Length</p>
+          <p id="user--step">Daily Step Goal</p>
         </article>
         <article class="container box--small">
-          <p>Your Step Goal</p>
-          <p>Average Steps for All Users</p>
+          <p id="user--step">Your Step Goal</p>
+          <p id="group--step">Average Steps for All Users</p>
         </article>
       </section>
       <section class="user--data">
@@ -36,6 +39,7 @@
         </article>
         <article class="container box--medium">
           <p>Your Sleep</p>
+          <input type="datetime-local" name="" value="">
         </article>
         <section class="user--data-medium">
           <article class="container box--large">
@@ -50,10 +54,12 @@
     <section class="graphs">
 
     </section>
-    <script type="text/javascript" src="../data/users.js"></script>
-    <script type="text/javascript" src="../data/hydration.js"></script>
-    <script type="text/javascript" src="../data/sleep.js"></script>
-    <script type="text/javascript" src="../data/activity.js"></script>
+    <script type="text/javascript" src="../src/user.js"></script>
+    <script type="text/javascript" src="../src/userRepository.js"></script>
+    <script type="text/javascript" src="../data/users-data.js"></script>
+    <script type="text/javascript" src="../data/hydration-data.js"></script>
+    <script type="text/javascript" src="../data/sleep-data.js"></script>
+    <script type="text/javascript" src="../data/activity-data.js"></script>
     <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html>
