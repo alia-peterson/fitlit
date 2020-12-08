@@ -6,7 +6,7 @@
 - [ ] Cleans up (logs, tests, etc.)
 
 
-·## *Description: What does this PR do?*
+## *Description: What does this PR do?*
 *Briefly, but clearly describe what you did, and explain any new code.*
 
 
