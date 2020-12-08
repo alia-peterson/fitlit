@@ -1,6 +1,7 @@
 class UserRepository {
   constructor( data = [] ) {
   	this.users = data
+    this.currentUser = ''
   }
 
   returnUserData( userID ) {
