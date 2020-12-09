@@ -14,6 +14,13 @@ class User {
     const fullName = this.name.split(' ')
   	return fullName[0]
   }
+
+  calculateAverageFluidOunces() {
+    return this.hydrationEntry.reduce((ounces,day) => {
+      return ounces += day.numOunces / this.hydrationEntry.length
+    }, 0)
+  }
+
 }
 
 if (typeof module !== 'undefined') {

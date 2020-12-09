@@ -29,4 +29,19 @@ describe('User', () => {
     expect(firstName).to.equal('Clark')
   })
 
+  it('should calculate average daily fluid ounces for alltime',() => {
+    user1.hydrationEntry = [{
+      "userID": 1,
+      "date": "2019/06/15",
+      "numOunces": 37
+    },
+    {
+      "userID": 2,
+      "date": "2019/06/15",
+      "numOunces": 75
+    }]
+    const average = user1.calculateAverageFluidOunces()
+    expect(average).to.equal(56)
+  })
+
 })
