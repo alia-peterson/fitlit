@@ -21,6 +21,11 @@ class User {
     }, 0)
   }
 
+  returnDayOunces(date) {
+    return this.hydrationEntry.find(day => day.date === date).numOunces
+  }
+
+
 }
 
 if (typeof module !== 'undefined') {
