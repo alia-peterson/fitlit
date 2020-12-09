@@ -14,7 +14,19 @@ class UserRepository {
       return steps += user.dailyStepGoal / this.users.length
     }, 0)
   }
+
+  populateHydrationData( hydrationInput = hydrationData ) {
+    this.users.forEach(user => {
+      hydrationInput.filter(entry => {
+        if (entry.userID === user.id) {
+          user.hydrationEntry.push(entry)
+        }
+      })
+
+    })
+  }
 }
+
 
 
 if (typeof module !== 'undefined') {
