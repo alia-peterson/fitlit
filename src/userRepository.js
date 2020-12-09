@@ -1,6 +1,7 @@
 class UserRepository {
   constructor( data = [] ) {
   	this.users = data
+    this.currentUser = ''
   }
 
   returnUserData( userID ) {
@@ -16,4 +17,6 @@ class UserRepository {
 }
 
 
-module.exports = UserRepository
+if (typeof module !== 'undefined') {
+  module.exports = UserRepository;
+}

@@ -6,9 +6,16 @@
 - [ ] Cleans up (logs, tests, etc.)
 
 
-
-## *Description:*
+## *Description: What does this PR do?*
 *Briefly, but clearly describe what you did, and explain any new code.*
+
+
+
+## *Instructions for reviewer:*
+*Where should the reviewer start?*
+*How should this be manually tested?*
+*Any background context you want to provide?*
+*What are the relevant tickets?*
 
 
 
