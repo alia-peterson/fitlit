@@ -21,7 +21,7 @@ class UserRepository {
         return entry.userID === user.id
       })
     })
-  })
+  }
 }
 
 

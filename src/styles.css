@@ -57,6 +57,21 @@ p {
   width: 1110px;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.site {
+  display: flex;
+  height: 100%;
+
+}
+
+.navigation--bar {
+  background-color: #BBDEFB;
+  padding-top: 100px;
+}
+
 .user--data {
   display: flex;
   flex-direction: row;
