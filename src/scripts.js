@@ -13,6 +13,7 @@ const homeIcon = document.querySelector('.navigation--home')
 const graphIcon = document.querySelector('.navigation--graphs')
 const dashboardView = document.querySelector('.dashboard')
 const graphView = document.querySelector('.graphs')
+const hydrationTable = document.querySelector('#table--hydration')
 
 
 
@@ -21,6 +22,7 @@ window.addEventListener('load', ( event ) => {
   populateGroupList()
   populateGroupData()
   populateDashboard()
+
 })
 
 homeIcon.addEventListener('click', ( event ) => {
@@ -60,6 +62,7 @@ function populateDashboard() {
   populateUserInformation()
   populateDate()
   populateUserHydration()
+  createUserHydrationTable()
 
 }
 
@@ -101,4 +104,26 @@ function populateUserHydration() {
 function toggleView() {
   dashboardView.classList.toggle('hidden')
   graphView.classList.toggle('hidden')
+}
+
+function createUserHydrationTable() {
+  hydrationTable.innerText = ''
+  const userHydration = userRepository.currentUser.hydrationEntry
+  const latestEntry = userHydration.length
+  const weeklyHydration = userHydration.slice(latestEntry - 7, latestEntry)
+  const days = [
+    'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
+  ]
+
+  for (var i = 0; i < days.length; i++) {
+    const tableRow = document.createElement('tr')
+    const dayOfTheWeek = document.createElement('td')
+    const dailyOunces = document.createElement('td')
+    let cellText = document.createTextNode([days[i]])
+
+    hydrationTable.appendChild(tableRow).appendChild(dayOfTheWeek).appendChild(cellText)
+    cellText = document.createTextNode(`${weeklyHydration[i].numOunces} ounces`)
+    hydrationTable.appendChild(tableRow).appendChild(dailyOunces).appendChild(cellText)
+  }
+
 }
