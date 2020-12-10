@@ -28,12 +28,12 @@ describe('User Repository', () => {
   })
 
   it('should store user data', () => {
-    expect(userRepository.users[0].name).to.equal(userData1.name)
+    expect(userRepository.users[0]).to.deep.equal(userData1)
   })
 
   it('should return user data from user ID', () => {
     const userFromID = userRepository.returnUserData(1)
-    expect(userFromID.name).to.equal(userData1.name)
+    expect(userFromID).to.deep.equal(userData1)
   })
 
   it('should calculate average step goal for all users', () => {
@@ -47,7 +47,7 @@ describe('User Repository', () => {
       "date": "2019/06/15",
       "numOunces": 37
     }]
-    userRepository.populateHydrationData(hydrationData)
+    userRepository.populateUserData('hydrationEntry', hydrationData)
     expect(user1.hydrationEntry[0].numOunces).to.equal(37)
   })
 })

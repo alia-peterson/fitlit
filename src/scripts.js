@@ -20,7 +20,7 @@ const hydrationTable = document.querySelector('#table--hydration')
 window.addEventListener('load', ( event ) => {
   createUserRepository()
   populateGroupList()
-  populateGroupData()
+  populateGroupData('hydrationEntry', hydrationData)
   populateDashboard()
 
 })
@@ -66,8 +66,8 @@ function populateDashboard() {
 
 }
 
-function populateGroupData() {
-  userRepository.populateHydrationData()
+function populateGroupData(type, dataList) {
+  userRepository.populateUserData(type, dataList)
 }
 
 function populateUserInformation() {
@@ -81,7 +81,7 @@ function populateUserInformation() {
   userAddress.innerText = `Address: ${currentUser.address}`
   userEmail.innerText = `Email: ${currentUser.email}`
   userStrideLength.innerText = `Stride Length: ${currentUser.strideLength}-ft`
-  groupAverageStepGoal.innerText = `Average Step Goal for All Users: ·${userRepository.calculateAverageStepGoal()} steps`
+  groupAverageStepGoal.innerText = `Average Step Goal for All Users: ${userRepository.calculateAverageStepGoal()} steps`
 
   userStepGoal.forEach( goal => {
     goal.innerText = `Daily Step Goal: ${currentUser.dailyStepGoal} steps`

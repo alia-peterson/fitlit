@@ -15,9 +15,9 @@ class UserRepository {
     }, 0)
   }
 
-  populateHydrationData(hydrationInput = hydrationData) {
+  populateUserData(type, dataList) {
     this.users.forEach(user => {
-      user.hydrationEntry = hydrationInput.filter(entry => {
+      user[type] = dataList.filter(entry => {
         return entry.userID === user.id
       })
     })
