@@ -4,6 +4,7 @@ const expect = chai.expect
 const UserTestData = require('../test/users-test-data')
 const User = require('../src/user')
 const UserRepository = require('../src/userRepository')
+const Hydration = require('../data/hydration-data')
 
 describe('User Repository', () => {
   let userRepository, userData1, userData2, userData3, user1, user2, user3
@@ -27,12 +28,12 @@ describe('User Repository', () => {
   })
 
   it('should store user data', () => {
-    expect(userRepository.users[0]).to.deep.equal(userData1)
+    expect(userRepository.users[0].name).to.equal(userData1.name)
   })
 
   it('should return user data from user ID', () => {
     const userFromID = userRepository.returnUserData(1)
-    expect(userFromID).to.deep.equal(userData1)
+    expect(userFromID.name).to.equal(userData1.name)
   })
 
   it('should calculate average step goal for all users', () => {
@@ -40,4 +41,13 @@ describe('User Repository', () => {
     expect(averageStepGoal.toFixed(1)).to.equal('6666.7')
   })
 
+  it('should populate the hydration array', () => {
+    let hydrationData = [{
+      "userID": 1,
+      "date": "2019/06/15",
+      "numOunces": 37
+    }]
+    userRepository.populateHydrationData(hydrationData)
+    expect(user1.hydrationEntry[0].numOunces).to.equal(37)
+  })
 })

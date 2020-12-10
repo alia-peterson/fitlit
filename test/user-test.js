@@ -11,9 +11,21 @@ describe('User', () => {
     userData1 = UserTestData.userData[0]
     userData2 = UserTestData.userData[1]
     userData3 = UserTestData.userData[2]
+
     user1 = new User(userData1)
     user2 = new User(userData2)
     user3 = new User(userData3)
+
+    user1.hydrationEntry = [{
+      "userID": 1,
+      "date": "2019/06/15",
+      "numOunces": 37
+    },
+    {
+      "userID": 2,
+      "date": "2019/05/15",
+      "numOunces": 75
+    }]
   })
 
   it('should be a function', () => {
@@ -29,4 +41,18 @@ describe('User', () => {
     expect(firstName).to.equal('Clark')
   })
 
+  it('should calculate average daily fluid ounces for alltime',() => {
+    const average = user1.calculateAverageFluidOunces()
+    expect(average).to.equal(56)
+  })
+
+  it('should calculate return ounces based on a chosen date', () => {
+    const ounces = user1.returnDayOunces("2019/06/15")
+    expect(ounces).to.equal(37)
+  })
+
+  it('should return total ounces between two dates', () => {
+    const ounces = user1.returnWeeklyOunces("2019/06/15", "2019/05/15")
+    expect(ounces).to.equal(112)
+  })
 })
