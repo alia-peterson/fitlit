@@ -50,4 +50,21 @@ describe('User Repository', () => {
     userRepository.populateUserData('hydrationEntry', hydrationData)
     expect(user1.hydrationEntry[0].numOunces).to.equal(37)
   })
+
+  it('should return the average quality of sleep for all users with sleep information', () => {
+    let sleepData = [{
+        "userID": 1,
+        "date": "2019/06/15",
+        "hoursSlept": 6.1,
+        "sleepQuality": 2.2
+      },
+      {
+        "userID": 2,
+        "date": "2019/07/15",
+        "hoursSlept": 7,
+        "sleepQuality": 4.7
+      }]
+    userRepository.populateUserData('sleepEntry', sleepData)
+    const average = userRepository.calculateAverageSleepQuality()
+  })
 })
