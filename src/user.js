@@ -16,7 +16,7 @@ class User {
   }
 
   calculateAverageFluidOunces() {
-    return this.hydrationEntry.reduce((ounces,day) => {
+    return this.hydrationEntry.reduce((ounces, day) => {
       return ounces += day.numOunces / this.hydrationEntry.length
     }, 0)
   }
@@ -25,6 +25,19 @@ class User {
     return this.hydrationEntry.find(day => day.date === date).numOunces
   }
 
+  returnWeeklyOunces(startDate, endDate) {
+    const startEntry = this.hydrationEntry.find(entry => entry.date === startDate)
+    const startIndex = this.hydrationEntry.indexOf(startEntry)
+
+    const endEntry = this.hydrationEntry.find(entry => entry.date === endDate)
+    const endIndex = this.hydrationEntry.indexOf(endEntry)
+
+    const reducedEntries = this.hydrationEntry.slice(startIndex, endIndex + 1)
+
+    return reducedEntries.reduce((ounces, entry) => {
+      return ounces + entry.numOunces
+    }, 0)
+  }
 
 }
 

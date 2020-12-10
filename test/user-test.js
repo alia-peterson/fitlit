@@ -23,7 +23,7 @@ describe('User', () => {
     },
     {
       "userID": 2,
-      "date": "2019/06/15",
+      "date": "2019/05/15",
       "numOunces": 75
     }]
   })
@@ -51,4 +51,8 @@ describe('User', () => {
     expect(ounces).to.equal(37)
   })
 
+  it('should return total ounces between two dates', () => {
+    const ounces = user1.returnWeeklyOunces("2019/06/15", "2019/05/15")
+    expect(ounces).to.equal(112)
+  })
 })
