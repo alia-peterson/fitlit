@@ -26,6 +26,19 @@ describe('User', () => {
       "date": "2019/05/15",
       "numOunces": 75
     }]
+
+    user1.sleepEntry = [{
+        "userID": 1,
+        "date": "2019/06/15",
+        "hoursSlept": 6.1,
+        "sleepQuality": 2.2
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/15",
+        "hoursSlept": 7,
+        "sleepQuality": 4.7
+      }]
   })
 
   it('should be a function', () => {
@@ -41,8 +54,8 @@ describe('User', () => {
     expect(firstName).to.equal('Clark')
   })
 
-  it('should calculate average daily fluid ounces for alltime',() => {
-    const average = user1.calculateAverageFluidOunces()
+  it('should calculate average daily fluid ounces for all time',() => {
+    const average = user1.calculateWeeklyAverage('hydrationEntry', 'numOunces')
     expect(average).to.equal(56)
   })
 
@@ -54,5 +67,10 @@ describe('User', () => {
   it('should return total ounces between two dates', () => {
     const ounces = user1.returnWeeklyOunces("2019/06/15", "2019/05/15")
     expect(ounces).to.equal(112)
+  })
+
+  it('should calculate average hours of sleep for all time', () => {
+    const average = user1.calculateWeeklyAverage('sleepEntry', 'hoursSlept')
+    expect(average).to.equal(6.55)
   })
 })

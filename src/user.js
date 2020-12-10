@@ -14,9 +14,9 @@ class User {
   	return fullName[0]
   }
 
-  calculateAverageFluidOunces() {
-    return this.hydrationEntry.reduce((ounces, day) => {
-      return ounces += day.numOunces / this.hydrationEntry.length
+  calculateWeeklyAverage(type, property) { 
+    return this[type].reduce((value, day) => {
+      return value += day[property] / this[type].length
     }, 0)
   }
 
