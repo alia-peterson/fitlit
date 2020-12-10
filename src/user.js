@@ -14,14 +14,14 @@ class User {
   	return fullName[0]
   }
 
-  calculateWeeklyAverage(type, property) { 
+  calculateLifetimeAverage(type, property) {
     return this[type].reduce((value, day) => {
       return value += day[property] / this[type].length
     }, 0)
   }
 
-  returnDayOunces(date) {
-    return this.hydrationEntry.find(day => day.date === date).numOunces
+  returnDailyValue(type, property, date) {
+    return this[type].find(day => day.date === date)[property]
   }
 
   returnWeeklyOunces(startDate, endDate) {

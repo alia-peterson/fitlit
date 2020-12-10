@@ -35,7 +35,7 @@ describe('User', () => {
       },
       {
         "userID": 2,
-        "date": "2019/06/15",
+        "date": "2019/07/15",
         "hoursSlept": 7,
         "sleepQuality": 4.7
       }]
@@ -55,12 +55,12 @@ describe('User', () => {
   })
 
   it('should calculate average daily fluid ounces for all time',() => {
-    const average = user1.calculateWeeklyAverage('hydrationEntry', 'numOunces')
+    const average = user1.calculateLifetimeAverage('hydrationEntry', 'numOunces')
     expect(average).to.equal(56)
   })
 
-  it('should calculate return ounces based on a chosen date', () => {
-    const ounces = user1.returnDayOunces("2019/06/15")
+  it('should return ounces based on a chosen date', () => {
+    const ounces = user1.returnDailyValue('hydrationEntry', 'numOunces', '2019/06/15')
     expect(ounces).to.equal(37)
   })
 
@@ -70,7 +70,17 @@ describe('User', () => {
   })
 
   it('should calculate average hours of sleep for all time', () => {
-    const average = user1.calculateWeeklyAverage('sleepEntry', 'hoursSlept')
+    const average = user1.calculateLifetimeAverage('sleepEntry', 'hoursSlept')
     expect(average).to.equal(6.55)
   })
+
+  it('should calculate average sleep quality for all time', () => {
+    const average = user1.calculateLifetimeAverage('sleepEntry', 'sleepQuality')
+    expect(average).to.equal(3.45)
+  })
+
+    it('should return hours slept based on a chosen date', () => {
+      const hours = user1.returnDailyValue('sleepEntry', 'hoursSlept', '2019/06/15')
+      expect(hours).to.equal(6.1)
+    })
 })
