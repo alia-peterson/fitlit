@@ -9,6 +9,12 @@ const groupAverageStepGoal = document.querySelector('.group--step')
 const groupList = document.querySelector('.group--list')
 const todaysDate = document.querySelector('.date')
 const userWater = document.querySelector('.user--daily-water')
+const homeIcon = document.querySelector('.navigation--home')
+const graphIcon = document.querySelector('.navigation--graphs')
+const dashboardView = document.querySelector('.dashboard')
+const graphView = document.querySelector('.graphs')
+
+
 
 window.addEventListener('load', ( event ) => {
   createUserRepository()
@@ -16,6 +22,19 @@ window.addEventListener('load', ( event ) => {
   populateGroupData()
   populateDashboard()
 })
+
+homeIcon.addEventListener('click', ( event ) => {
+  if (dashboardView.classList.contains("hidden")) {
+    toggleView()
+  }
+})
+
+graphIcon.addEventListener('click', ( event ) => {
+  if (graphView.classList.contains("hidden")) {
+    toggleView()
+  }
+})
+
 
 groupList.addEventListener('change', ( event ) => {
   populateDashboard()
@@ -77,4 +96,9 @@ function populateUserHydration() {
   const userHydration = userRepository.currentUser.hydrationEntry
   const latestEntry = userHydration.length - 1
   userWater.innerText = `${userHydration[latestEntry].numOunces} oz.`
+}
+
+function toggleView() {
+  dashboardView.classList.toggle('hidden')
+  graphView.classList.toggle('hidden')
 }
