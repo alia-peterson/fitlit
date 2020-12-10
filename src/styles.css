@@ -57,6 +57,16 @@ p {
   width: 1110px;
 }
 
+.home {
+  display: flex;
+
+}
+
+.navigation--bar {
+  background-color: #BBDEFB;
+  padding-top: 100px;
+}
+
 .user--data {
   display: flex;
   flex-direction: row;

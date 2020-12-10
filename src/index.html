@@ -8,52 +8,57 @@
     <link rel="stylesheet" type="text/css" href="./styles.css">
   </head>
   <body>
-    <section class="dashboard">
-      <select class="group--list" name=""></select>
-      <header class="header">
-        <h1 class="user--welcome">Welcome, Jarvis!</h1>
-        <article class="container box--xsmall">
-          <p class="date">Date</p>
-        </article>
-      </header>
-      <section class="user--information">
-        <article class="container box--small">
-          <p class="user--name">Name: </p>
-          <p class="user--address">Address: </p>
-          <p class="user--email">Email: </p>
-        </article>
-        <article class="container box--small">
-          <p class="user--stride">Stride Length</p>
-          <p class="user--step">Daily Step Goal</p>
-        </article>
-        <article class="container box--small">
-          <p class="user--step">Your Step Goal</p>
-          <p class="group--step">Average Steps for All Users</p>
-        </article>
-      </section>
-      <section class="user--data">
-        <article class="container box--medium">
-          <p>Your Activity</p>
-        </article>
-        <article class="container box--medium">
-          <p>Your Sleep</p>
-          <input type="datetime-local" name="" value="">
-        </article>
-        <section class="user--data-medium">
-          <article class="container box--large">
-            <p>Your Friends</p>
+    <section class="home">
+      <nav class="navigation--bar">
+        <img src="../assets/home-icon.svg" alt="Home Icon">
+        <img src="../assets/graph-icon.svg" alt="Bar Graph Icon">
+      </nav>
+      <article class="dashboard">
+        <select class="group--list" name=""></select>
+        <header class="header">
+          <h1 class="user--welcome">Welcome, Jarvis!</h1>
+          <article class="container box--xsmall">
+            <p class="date">Date</p>
           </article>
-          <article class="container box--large">
-            <p>Your Hydration</p>
-            <p>Today</p>
-            <img src="../assets/water-drop.svg" alt="Water drop icon">
-            <p class="user--daily-water">Ounces</p>
+        </header>
+        <section class="user--information">
+          <article class="container box--small">
+            <p class="user--name">Name: </p>
+            <p class="user--address">Address: </p>
+            <p class="user--email">Email: </p>
+          </article>
+          <article class="container box--small">
+            <p class="user--stride">Stride Length</p>
+            <p class="user--step">Daily Step Goal</p>
+          </article>
+          <article class="container box--small">
+            <p class="user--step">Your Step Goal</p>
+            <p class="group--step">Average Steps for All Users</p>
           </article>
         </section>
-      </section>
+        <section class="user--data">
+          <article class="container box--medium">
+            <p>Your Activity</p>
+          </article>
+          <article class="container box--medium">
+            <p>Your Sleep</p>
+            <input type="datetime-local" name="" value="">
+          </article>
+          <section class="user--data-medium">
+            <article class="container box--large">
+              <p>Your Friends</p>
+            </article>
+            <article class="container box--large">
+              <p>Your Hydration</p>
+              <p>Today</p>
+              <img src="../assets/water-drop.svg" alt="Water drop icon">
+              <p class="user--daily-water">Ounces</p>
+            </article>
+          </section>
+        </section>
+      </article>
     </section>
     <section class="graphs">
-
     </section>
     <script type="text/javascript" src="../src/user.js"></script>
     <script type="text/javascript" src="../src/userRepository.js"></script>
