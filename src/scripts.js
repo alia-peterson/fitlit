@@ -8,16 +8,17 @@ const userStepGoal = document.querySelectorAll('.user--step')
 const groupAverageStepGoal = document.querySelector('.group--step')
 const groupList = document.querySelector('.group--list')
 const todaysDate = document.querySelector('.date')
+const userWater = document.querySelector('.user--daily-water')
 
 window.addEventListener('load', ( event ) => {
   createUserRepository()
   populateGroupList()
-  populateUserInformation()
-  populateDate()
+  populateGroupData()
+  populateDashboard()
 })
 
 groupList.addEventListener('change', ( event ) => {
-  populateUserInformation()
+  populateDashboard()
 })
 
 function createUserRepository() {
@@ -34,6 +35,17 @@ function populateGroupList() {
     userName.value = entry.name
     groupList.appendChild( userName )
   })
+}
+
+function populateDashboard() {
+  populateUserInformation()
+  populateDate()
+  populateUserHydration()
+
+}
+
+function populateGroupData() {
+  userRepository.populateHydrationData()
 }
 
 function populateUserInformation() {
@@ -59,4 +71,10 @@ function populateDate() {
   const today = new Date( timeElapsed )
 
   todaysDate.innerText = today.toDateString()
+}
+
+function populateUserHydration() {
+  const userHydration = userRepository.currentUser.hydrationEntry
+  const latestEntry = userHydration.length - 1
+  userWater.innerText = `${userHydration[latestEntry].numOunces} oz.`
 }
