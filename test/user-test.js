@@ -64,9 +64,9 @@ describe('User', () => {
     expect(ounces).to.equal(37)
   })
 
-  it('should return total ounces between two dates', () => {
-    const ounces = user1.returnWeeklyOunces("2019/06/15", "2019/05/15")
-    expect(ounces).to.equal(112)
+  it('should return daily ounces consumed between two dates', () => {
+    const ounces = user1.returnWeeklyValue('hydrationEntry', 'numOunces', '2019/06/15', '2019/05/15')
+    expect(ounces).to.deep.equal([37, 75])
   })
 
   it('should calculate average hours of sleep for all time', () => {
@@ -79,8 +79,18 @@ describe('User', () => {
     expect(average).to.equal(3.45)
   })
 
-    it('should return hours slept based on a chosen date', () => {
-      const hours = user1.returnDailyValue('sleepEntry', 'hoursSlept', '2019/06/15')
-      expect(hours).to.equal(6.1)
-    })
+  it('should return hours slept based on a chosen date', () => {
+    const hours = user1.returnDailyValue('sleepEntry', 'hoursSlept', '2019/06/15')
+    expect(hours).to.equal(6.1)
+  })
+
+  it('should return sleep quality based on a chosen date', () => {
+    const quality = user1.returnDailyValue('sleepEntry', 'sleepQuality', '2019/06/15')
+    expect(quality).to.equal(2.2)
+  })
+
+  it('should return daily hours slept between two dates', () => {
+    const hours = user1.returnWeeklyValue('sleepEntry', 'hoursSlept', '2019/06/15', '2019/07/15')
+    expect(hours).to.deep.equal([6.1, 7])
+  })
 })
