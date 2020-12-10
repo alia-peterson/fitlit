@@ -93,4 +93,9 @@ describe('User', () => {
     const hours = user1.returnWeeklyValue('sleepEntry', 'hoursSlept', '2019/06/15', '2019/07/15')
     expect(hours).to.deep.equal([6.1, 7])
   })
+
+  it('should return daily sleep quality between two dates', () => {
+    const quality = user1.returnWeeklyValue('sleepEntry', 'sleepQuality', '2019/06/15', '2019/07/15')
+    expect(quality).to.deep.equal([2.2, 4.7])
+  })
 })
