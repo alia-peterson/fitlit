@@ -7,7 +7,7 @@ const UserRepository = require('../src/userRepository')
 const Hydration = require('../data/hydration-data')
 
 describe('User Repository', () => {
-  let userRepository, userData1, userData2, userData3, user1, user2, user3
+  let userRepository, userData1, userData2, userData3, user1, user2, user3, sleepData
 
   beforeEach( () => {
     userData1 = UserTestData.userData[0]
@@ -17,6 +17,25 @@ describe('User Repository', () => {
     user2 = new User(userData2)
     user3 = new User(userData3)
     userRepository = new UserRepository([user1, user2, user3])
+
+    sleepData = [{
+        "userID": 1,
+        "date": "2019/06/15",
+        "hoursSlept": 6.1,
+        "sleepQuality": 3.5
+      },
+      {
+        "userID": 2,
+        "date": "2019/07/15",
+        "hoursSlept": 7,
+        "sleepQuality": 4.7
+      },
+      {
+        "userID": 3,
+        "date": "2019/06/15",
+        "hoursSlept": 10.8,
+        "sleepQuality": 4.7
+      }]
   })
 
   it('should be a function', () => {
@@ -52,20 +71,15 @@ describe('User Repository', () => {
   })
 
   it('should return the average quality of sleep for all users with sleep information', () => {
-    let sleepData = [{
-        "userID": 1,
-        "date": "2019/06/15",
-        "hoursSlept": 6.1,
-        "sleepQuality": 3.5
-      },
-      {
-        "userID": 2,
-        "date": "2019/07/15",
-        "hoursSlept": 7,
-        "sleepQuality": 4.7
-      }]
     userRepository.populateUserData('sleepEntry', sleepData)
     const qualitySleepers = userRepository.calculateAverageSleepQuality()
-    expect(qualitySleepers).to.deep.equal([user1, user2])
+    expect(qualitySleepers).to.deep.equal([user1, user2, user3])
+  })
+
+  it('should return user who slept the most for a given date', () => {
+    userRepository.populateUserData('sleepEntry', sleepData)
+    const best = userRepository.returnBestSleepers("2019/06/15", sleepData)
+
+    expect(best).to.deep.equal([user3])
   })
 })
