@@ -15,12 +15,55 @@ class UserRepository {
     }, 0)
   }
 
-  populateHydrationData(hydrationInput = hydrationData) {
+  calculateAverageSleepQuality() {
+    const sleepyUsers = this.users.filter(user => user.sleepEntry.length > 0)
+
+    const qualityAboveThree = []
+
+    sleepyUsers.forEach(user => {
+      const totalQuality = user.sleepEntry.map(entry => entry.sleepQuality)
+      const averageQuality = totalQuality / user.sleepEntry.length
+
+      if (averageQuality >= 3) {
+        qualityAboveThree.push(user)
+      }
+    })
+
+    return qualityAboveThree
+  }
+
+  populateUserData(type, dataList) {
     this.users.forEach(user => {
-      user.hydrationEntry = hydrationInput.filter(entry => {
+      user[type] = dataList.filter(entry => {
         return entry.userID === user.id
       })
     })
+  }
+
+  returnBestSleepers(inputDate, inputData = sleepData) {
+    // finds entries from sleepData that have the same date as our input
+    const sleepDataForDate = inputData.filter(entry => entry.date === inputDate)
+
+    // moves the entry with the highest sleep value to index 0
+    const sortedSleepData = sleepDataForDate.sort((a, b) => {
+      return b.hoursSlept - a.hoursSlept
+    })
+
+    // return the sleep entries that have an hoursSlept equal to
+    // the highest sleep value in our sorted array
+    const highestSleepEntries = sortedSleepData.filter(entry => {
+      return entry.hoursSlept === sortedSleepData[0].hoursSlept
+    })
+
+    const bestSleepers = []
+
+    // iterating through our array of highestSleepEntries
+    // finding the users in our this.users array with the relevant IDs
+    for (var i = 0; i < highestSleepEntries.length; i++) {
+      bestSleepers.push(this.users[highestSleepEntries[i].userID - 1])
+    }
+
+    return bestSleepers
   }
 }
 

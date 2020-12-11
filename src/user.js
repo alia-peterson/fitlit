@@ -7,7 +7,6 @@ class User {
     this.strideLength = userData.strideLength
     this.dailyStepGoal = userData.dailyStepGoal
     this.friends = userData.friends
-    this.hydrationEntry = []
   }
 
   returnFirstName() {
@@ -15,28 +14,26 @@ class User {
   	return fullName[0]
   }
 
-  calculateAverageFluidOunces() {
-    return this.hydrationEntry.reduce((ounces, day) => {
-      return ounces += day.numOunces / this.hydrationEntry.length
+  calculateLifetimeAverage(type, property) {
+    return this[type].reduce((value, day) => {
+      return value += day[property] / this[type].length
     }, 0)
   }
 
-  returnDayOunces(date) {
-    return this.hydrationEntry.find(day => day.date === date).numOunces
+  returnDailyValue(type, property, date) {
+    return this[type].find(day => day.date === date)[property]
   }
 
-  returnWeeklyOunces(startDate, endDate) {
-    const startEntry = this.hydrationEntry.find(entry => entry.date === startDate)
-    const startIndex = this.hydrationEntry.indexOf(startEntry)
+  returnWeeklyValue(type, property, startDate, endDate) {
+    const startEntry = this[type].find(entry => entry.date === startDate)
+    const startIndex = this[type].indexOf(startEntry)
 
-    const endEntry = this.hydrationEntry.find(entry => entry.date === endDate)
-    const endIndex = this.hydrationEntry.indexOf(endEntry)
+    const endEntry = this[type].find(entry => entry.date === endDate)
+    const endIndex = this[type].indexOf(endEntry)
 
-    const reducedEntries = this.hydrationEntry.slice(startIndex, endIndex + 1)
+    const reducedEntries = this[type].slice(startIndex, endIndex + 1)
 
-    return reducedEntries.reduce((ounces, entry) => {
-      return ounces + entry.numOunces
-    }, 0)
+    return reducedEntries.map(entry => entry[property])
   }
 
 }

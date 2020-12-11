@@ -26,6 +26,19 @@ describe('User', () => {
       "date": "2019/05/15",
       "numOunces": 75
     }]
+
+    user1.sleepEntry = [{
+        "userID": 1,
+        "date": "2019/06/15",
+        "hoursSlept": 6.1,
+        "sleepQuality": 2.2
+      },
+      {
+        "userID": 2,
+        "date": "2019/07/15",
+        "hoursSlept": 7,
+        "sleepQuality": 4.7
+      }]
   })
 
   it('should be a function', () => {
@@ -41,18 +54,48 @@ describe('User', () => {
     expect(firstName).to.equal('Clark')
   })
 
-  it('should calculate average daily fluid ounces for alltime',() => {
-    const average = user1.calculateAverageFluidOunces()
+  it('should calculate average daily fluid ounces for all time',() => {
+    const average = user1.calculateLifetimeAverage('hydrationEntry', 'numOunces')
     expect(average).to.equal(56)
   })
 
-  it('should calculate return ounces based on a chosen date', () => {
-    const ounces = user1.returnDayOunces("2019/06/15")
+  it('should return ounces based on a chosen date', () => {
+    const ounces = user1.returnDailyValue('hydrationEntry', 'numOunces', '2019/06/15')
     expect(ounces).to.equal(37)
   })
 
-  it('should return total ounces between two dates', () => {
-    const ounces = user1.returnWeeklyOunces("2019/06/15", "2019/05/15")
-    expect(ounces).to.equal(112)
+  it('should return daily ounces consumed between two dates', () => {
+    const ounces = user1.returnWeeklyValue('hydrationEntry', 'numOunces', '2019/06/15', '2019/05/15')
+    expect(ounces).to.deep.equal([37, 75])
+  })
+
+  it('should calculate average hours of sleep for all time', () => {
+    const average = user1.calculateLifetimeAverage('sleepEntry', 'hoursSlept')
+    expect(average).to.equal(6.55)
+  })
+
+  it('should calculate average sleep quality for all time', () => {
+    const average = user1.calculateLifetimeAverage('sleepEntry', 'sleepQuality')
+    expect(average).to.equal(3.45)
+  })
+
+  it('should return hours slept based on a chosen date', () => {
+    const hours = user1.returnDailyValue('sleepEntry', 'hoursSlept', '2019/06/15')
+    expect(hours).to.equal(6.1)
+  })
+
+  it('should return sleep quality based on a chosen date', () => {
+    const quality = user1.returnDailyValue('sleepEntry', 'sleepQuality', '2019/06/15')
+    expect(quality).to.equal(2.2)
+  })
+
+  it('should return daily hours slept between two dates', () => {
+    const hours = user1.returnWeeklyValue('sleepEntry', 'hoursSlept', '2019/06/15', '2019/07/15')
+    expect(hours).to.deep.equal([6.1, 7])
+  })
+
+  it('should return daily sleep quality between two dates', () => {
+    const quality = user1.returnWeeklyValue('sleepEntry', 'sleepQuality', '2019/06/15', '2019/07/15')
+    expect(quality).to.deep.equal([2.2, 4.7])
   })
 })
