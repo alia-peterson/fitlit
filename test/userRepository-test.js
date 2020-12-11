@@ -56,7 +56,7 @@ describe('User Repository', () => {
         "userID": 1,
         "date": "2019/06/15",
         "hoursSlept": 6.1,
-        "sleepQuality": 2.2
+        "sleepQuality": 3.5
       },
       {
         "userID": 2,
@@ -65,6 +65,7 @@ describe('User Repository', () => {
         "sleepQuality": 4.7
       }]
     userRepository.populateUserData('sleepEntry', sleepData)
-    const average = userRepository.calculateAverageSleepQuality()
+    const qualitySleepers = userRepository.calculateAverageSleepQuality()
+    expect(qualitySleepers).to.deep.equal([user1, user2])
   })
 })

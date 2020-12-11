@@ -18,11 +18,18 @@ class UserRepository {
   calculateAverageSleepQuality() {
     const sleepyUsers = this.users.filter(user => user.sleepEntry.length > 0)
 
-    return sleepyUsers.forEach(user => {
-      return user.sleepEntry.reduce((acc, curr) => {
-        return acc += user.sleepEntry.sleepQuality / user.sleepEntry.length
-      })
+    const qualityAboveThree = []
+
+    sleepyUsers.forEach(user => {
+      const totalQuality = user.sleepEntry.map(entry => entry.sleepQuality)
+      const averageQuality = totalQuality / user.sleepEntry.length
+
+      if (averageQuality >= 3) {
+        qualityAboveThree.push(user)
+      }
     })
+
+    return qualityAboveThree
   }
 
   populateUserData(type, dataList) {
@@ -32,6 +39,10 @@ class UserRepository {
       })
     })
   }
+
+  // returnUsersWhoSleepWell() {
+  //   return
+  // }
 }
 
 
