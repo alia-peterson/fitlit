@@ -1,6 +1,6 @@
-* {
+/* * {
   border: 1px solid pink;
-}
+} */
 
 body, html {
   font-family: "Open Sans", sans-serif;
@@ -20,22 +20,41 @@ p {
 .box--small {
   height: 10em;
   text-align: left;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .box--medium {
   align-items: center;
-  height: 30em;
+  height: 14em;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 .box--large {
-  height: 14em;
+  height: 30em;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .box--header {
   font-size: 1.2em;
   margin-top: 0.4em;
+}
+
+.box--body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-bottom: 8em;
+}
+
+.box--body-top {
+  padding-top: 1em;
+  padding-bottom: 2em;
 }
 
 .container {
@@ -44,7 +63,7 @@ p {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   margin: 10px;
   padding: 10px;
   width: 20em;
@@ -76,8 +95,8 @@ p {
 }
 
 .icon--small {
-  justify-content: center;
   width: 4em;
+  padding: 0 2em 0 2em;
 }
 
 .navigation--bar {
