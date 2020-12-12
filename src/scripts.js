@@ -9,20 +9,21 @@ const groupAverageStepGoal = document.querySelector('.group--step')
 const groupList = document.querySelector('.group--list')
 const todaysDate = document.querySelector('.date')
 const userWater = document.querySelector('.user--daily-water')
-const homeIcon = document.querySelector('.navigation--home')
-const graphIcon = document.querySelector('.navigation--graphs')
+const homeIcon = document.querySelector('#navigation--home')
+const graphIcon = document.querySelector('#navigation--graphs')
 const dashboardView = document.querySelector('.dashboard')
 const graphView = document.querySelector('.graphs')
 const hydrationTable = document.querySelector('#table--hydration')
-
+const userHoursSlept = document.querySelector('.user--daily-hours')
+const userQuantitySlept = document.querySelector('.user--daily-quality')
 
 
 window.addEventListener('load', ( event ) => {
   createUserRepository()
   populateGroupList()
   populateGroupData('hydrationEntry', hydrationData)
+  populateGroupData('sleepEntry', sleepData)
   populateDashboard()
-
 })
 
 homeIcon.addEventListener('click', ( event ) => {
@@ -61,9 +62,10 @@ function populateGroupList() {
 function populateDashboard() {
   populateUserInformation()
   populateDate()
-  populateUserHydration()
+  populateUserStatistics('hydrationEntry', userWater, 'numOunces', 'oz')
+  populateUserStatistics('sleepEntry', userHoursSlept, 'hoursSlept', 'Hrs')
+  populateUserStatistics('sleepEntry', userQuantitySlept, 'sleepQuality', '/ 10')
   createUserHydrationTable()
-
 }
 
 function populateGroupData(type, dataList) {
@@ -95,10 +97,10 @@ function populateDate() {
   todaysDate.innerText = today.toDateString()
 }
 
-function populateUserHydration() {
-  const userHydration = userRepository.currentUser.hydrationEntry
-  const latestEntry = userHydration.length - 1
-  userWater.innerText = `${userHydration[latestEntry].numOunces} oz.`
+function populateUserStatistics(dataType, statisticType, propertyType, units) {
+  const userData = userRepository.currentUser[dataType]
+  const latestEntry = userData.length - 1
+  statisticType.innerText = `${userData[latestEntry][propertyType]} ${units}`
 }
 
 function toggleView() {
