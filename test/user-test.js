@@ -136,4 +136,9 @@ describe('User', () => {
     const avgMinutes = user1.calculateAverageBetweenDates('activityEntry', 'minutesActive', '2019/06/15', '2019/06/17')
     expect(avgMinutes.toFixed(1)).to.equal('131.3')
   })
+
+  it('should return whether the user achieved their step goal for a given date', () => {
+    const achieve = user1.returnAchievedStepGoal('2019/06/15')
+    expect(achieve).to.equal(false)
+  })
 })

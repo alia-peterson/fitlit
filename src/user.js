@@ -7,6 +7,9 @@ class User {
     this.strideLength = userData.strideLength
     this.dailyStepGoal = userData.dailyStepGoal
     this.friends = userData.friends
+    // this.activityEntry = []
+    // this.sleepEntry = []
+    // this.hydrationEntry = []
   }
 
   returnFirstName() {
@@ -50,6 +53,15 @@ class User {
 
     const reducedEntries = this[type].slice(startIndex, endIndex + 1)
     return reducedEntries
+  }
+
+  returnAchievedStepGoal(day) {
+    const dateOfActivity = this.activityEntry.find(entry => entry.date === day)
+
+    if (dateOfActivity.numSteps >= this.dailyStepGoal) {
+      return true
+    }
+    return false
   }
 
 }
