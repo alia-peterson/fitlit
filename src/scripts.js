@@ -14,6 +14,7 @@ const graphIcon = document.querySelector('#navigation--graphs')
 const dashboardView = document.querySelector('.dashboard')
 const graphView = document.querySelector('.graphs')
 const hydrationTable = document.querySelector('#table--hydration')
+const sleepTable = document.querySelector('#table--sleep')
 const userHoursSlept = document.querySelector('.user--daily-hours')
 const userQuantitySlept = document.querySelector('.user--daily-quality')
 
@@ -65,7 +66,9 @@ function populateDashboard() {
   populateUserStatistics('hydrationEntry', userWater, 'numOunces', 'oz')
   populateUserStatistics('sleepEntry', userHoursSlept, 'hoursSlept', 'Hrs')
   populateUserStatistics('sleepEntry', userQuantitySlept, 'sleepQuality', '/ 10')
-  createUserHydrationTable()
+
+  createUserDataTable(hydrationTable, 'hydrationEntry', 'numOunces', 'ounces')
+  // createUserDataTable(sleepTable, 'sleepEntry', 'hoursSlept', 'hours')
 }
 
 function populateGroupData(type, dataList) {
@@ -108,24 +111,27 @@ function toggleView() {
   graphView.classList.toggle('hidden')
 }
 
-function createUserHydrationTable() {
-  hydrationTable.innerText = ''
-  const userHydration = userRepository.currentUser.hydrationEntry
-  const latestEntry = userHydration.length
-  const weeklyHydration = userHydration.slice(latestEntry - 7, latestEntry)
+function createUserDataTable(tableType, dataType, propertyType, units) {
+  tableType.innerText = ''
+  const userData = userRepository.currentUser[dataType]
+  const latestEntry = userData.length
+  const weeklyData = userData.slice(latestEntry - 7, latestEntry)
+                              .map(each => `${each[propertyType]} ${units}`)
+
   const days = [
     'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
   ]
+  createTableColumn(tableType, [days, weeklyData])
+}
 
-  for (var i = 0; i < days.length; i++) {
+function createTableColumn(tableType, cellTextInput) {
+  for (var i = 0; i < 7; i++) {
     const tableRow = document.createElement('tr')
-    const dayOfTheWeek = document.createElement('td')
-    const dailyOunces = document.createElement('td')
-    let cellText = document.createTextNode([days[i]])
 
-    hydrationTable.appendChild(tableRow).appendChild(dayOfTheWeek).appendChild(cellText)
-    cellText = document.createTextNode(`${weeklyHydration[i].numOunces} ounces`)
-    hydrationTable.appendChild(tableRow).appendChild(dailyOunces).appendChild(cellText)
+    for (var j = 0; j < cellTextInput.length; j++) {
+      const tableCell = document.createElement('td')
+      const cellText = document.createTextNode(cellTextInput[j][i])
+      tableType.appendChild(tableRow).appendChild(tableCell).appendChild(cellText)
+    }
   }
-
 }
