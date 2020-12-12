@@ -13,23 +13,23 @@ p {
 }
 
 .box--xsmall {
-  height: 45px;
+  height: 3em;
   text-align: left;
 }
 
 .box--small {
-  height: 110px;
+  height: 10em;
   text-align: left;
 }
 
 .box--medium {
   align-items: center;
-  height: 380px;
+  height: 30em;
   text-align: center;
 }
 
 .box--large {
-  height: 175px;
+  height: 14em;
   text-align: center;
 }
 
@@ -39,7 +39,7 @@ p {
 }
 
 .container {
-  border-color: black;
+  border: 1px solid black;
   border-radius: 10px;
   box-sizing: border-box;
   display: flex;
@@ -47,7 +47,7 @@ p {
   justify-content: space-between;
   margin: 10px;
   padding: 10px;
-  width: 350px;
+  width: 20em;
 }
 
 .dashboard {
@@ -76,8 +76,17 @@ p {
 }
 
 .navigation--bar {
+  /* align-content: center; */
   background-color: #BBDEFB;
-  padding-top: 100px;
+  display: block;
+  margin-right: 10px;
+  max-width: 48px;
+  padding-top: 80px;
+}
+
+.navigation--logo {
+  margin: 0.5em;
+  width: 2em;
 }
 
 .site {
@@ -104,4 +113,12 @@ p {
 .user--information {
   display: flex;
   flex-direction: row;
+}
+
+.user--welcome {
+  font-size: 1.8em;
+}
+
+@media (max-width: 780px) {
+
 }
