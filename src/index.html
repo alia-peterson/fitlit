@@ -12,8 +12,8 @@
 <body>
   <section class="site">
     <nav class="navigation--bar">
-      <img class="navigation--home" src="../assets/home-icon.svg" alt="Home Icon">
-      <img class="navigation--graphs" src="../assets/graph-icon.svg" alt="Bar Graph Icon">
+      <img id="navigation--home" class="navigation--logo" src="../assets/home-icon.svg" alt="Home Icon">
+      <img id="navigation--graphs" class="navigation--logo" src="../assets/graph-icon.svg" alt="Bar Graph Icon">
     </nav>
     <article class="dashboard">
       <select class="group--list" name=""></select>
@@ -40,19 +40,46 @@
       </section>
       <section class="user--data">
         <article class="container box--medium">
-          <p>Your Activity</p>
+          <h2 class="box--header">Your Activity</h2>
         </article>
         <article class="container box--medium">
-          <p>Your Sleep</p>
+          <h2 class="box--header">Your Sleep</h2>
+          <h3>Today</h3>
+          <img class="icon--large" src="../assets/sleep-icon.svg" alt="Sleep icon">
+          <section class="user--data">
+            <div class="user--data-sleep">
+              <p class="user--daily-hours">Hrs</p>
+              <p>Quantity</p>
+            </div>
+            <div class="user--data-sleep">
+              <p class="user--daily-quality">10/10</p>
+              <p>Quality</p>
+            </div>
+          </section>
+          <h3>Average</h3>
+          <section class="user--data">
+            <div class="user--data-sleep">
+              <p class="user--average-hours">Hrs</p>
+              <p>Quantity</p>
+            </div>
+            <div class="user--data-sleep">
+              <p class="user--average-quality">10/10</p>
+              <p>Quality</p>
+            </div>
+          </section>
           <input type="datetime-local" name="" value="">
         </article>
         <section class="user--data-medium">
           <article class="container box--large">
-            <p>Your Friends</p>
+            <h2 class="box--header">Your Friends</h2>
+            <p>Clark Kent</p>
+            <p>Draco Malfoy</p>
+            <p>Diana Prince</p>
+            <p>Tony Stark</p>
           </article>
           <article class="container box--large">
-            <p>Your Hydration</p>
-            <p>Today</p>
+            <h2 class="box--header">Your Hydration</h2>
+            <h3>Today</h3>
             <img src="../assets/water-drop.svg" alt="Water drop icon">
             <p class="user--daily-water">Ounces</p>
           </article>
@@ -71,6 +98,15 @@
           </tbody>
         </table>
       </article>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="3">Weekly Sleep Information</th>
+            </tr>
+          </thead>
+          <tbody id="table--sleep">
+          </tbody>
+        </table>
       <article>
       </article>
       <article>

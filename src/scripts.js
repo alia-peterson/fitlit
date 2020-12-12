@@ -9,20 +9,24 @@ const groupAverageStepGoal = document.querySelector('.group--step')
 const groupList = document.querySelector('.group--list')
 const todaysDate = document.querySelector('.date')
 const userWater = document.querySelector('.user--daily-water')
-const homeIcon = document.querySelector('.navigation--home')
-const graphIcon = document.querySelector('.navigation--graphs')
+const homeIcon = document.querySelector('#navigation--home')
+const graphIcon = document.querySelector('#navigation--graphs')
 const dashboardView = document.querySelector('.dashboard')
 const graphView = document.querySelector('.graphs')
 const hydrationTable = document.querySelector('#table--hydration')
-
+const sleepTable = document.querySelector('#table--sleep')
+const userHoursSlept = document.querySelector('.user--daily-hours')
+const userQuantitySlept = document.querySelector('.user--daily-quality')
+const userAvgHoursSlept = document.querySelector('.user--average-hours')
+const userAvgQuantitySlept = document.querySelector('.user--average-quality')
 
 
 window.addEventListener('load', ( event ) => {
   createUserRepository()
   populateGroupList()
   populateGroupData('hydrationEntry', hydrationData)
+  populateGroupData('sleepEntry', sleepData)
   populateDashboard()
-
 })
 
 homeIcon.addEventListener('click', ( event ) => {
@@ -36,7 +40,6 @@ graphIcon.addEventListener('click', ( event ) => {
     toggleView()
   }
 })
-
 
 groupList.addEventListener('change', ( event ) => {
   populateDashboard()
@@ -61,9 +64,15 @@ function populateGroupList() {
 function populateDashboard() {
   populateUserInformation()
   populateDate()
-  populateUserHydration()
-  createUserHydrationTable()
+  populateUserStatistics('hydrationEntry', userWater, 'numOunces', 'oz')
+  populateUserStatistics('sleepEntry', userHoursSlept, 'hoursSlept', 'Hrs')
+  populateUserStatistics('sleepEntry', userQuantitySlept, 'sleepQuality', '/ 10')
 
+  populateAverageStatistics('sleepEntry', userAvgHoursSlept, 'hoursSlept', 'Hrs')
+  populateAverageStatistics('sleepEntry', userAvgQuantitySlept, 'sleepQuality', '/ 10')
+
+  createUserDataTable(hydrationTable, 'hydrationEntry', ['numOunces'], ['ounces'])
+  createUserDataTable(sleepTable, 'sleepEntry', ['hoursSlept', 'sleepQuality'], ['hours', '/ 10 quality'])
 }
 
 function populateGroupData(type, dataList) {
@@ -95,10 +104,15 @@ function populateDate() {
   todaysDate.innerText = today.toDateString()
 }
 
-function populateUserHydration() {
-  const userHydration = userRepository.currentUser.hydrationEntry
-  const latestEntry = userHydration.length - 1
-  userWater.innerText = `${userHydration[latestEntry].numOunces} oz.`
+function populateUserStatistics(dataType, statisticType, propertyType, units) {
+  const userData = userRepository.currentUser[dataType]
+  const latestEntry = userData.length - 1
+  statisticType.innerText = `${userData[latestEntry][propertyType]} ${units}`
+}
+
+function populateAverageStatistics(dataType, statisticType, propertyType, units) {
+  const userData = userRepository.currentUser.calculateLifetimeAverage(dataType, propertyType)
+  statisticType.innerText = `${userData.toFixed(1)} ${units}`
 }
 
 function toggleView() {
@@ -106,24 +120,33 @@ function toggleView() {
   graphView.classList.toggle('hidden')
 }
 
-function createUserHydrationTable() {
-  hydrationTable.innerText = ''
-  const userHydration = userRepository.currentUser.hydrationEntry
-  const latestEntry = userHydration.length
-  const weeklyHydration = userHydration.slice(latestEntry - 7, latestEntry)
+function createUserDataTable(tableType, dataType, propertyType, units) {
+  tableType.innerText = ''
+  const userData = userRepository.currentUser[dataType]
+  const latestEntry = userData.length
+  const weeklyData = userData.slice(latestEntry - 7, latestEntry)
+
   const days = [
     'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
   ]
 
-  for (var i = 0; i < days.length; i++) {
+  const dataColumns = [days]
+
+  propertyType.forEach((entry, index) => {
+    dataColumns.push(weeklyData.map(each => `${each[entry]} ${units[index]}`))
+  })
+
+  createTableColumn(tableType, dataColumns)
+}
+
+function createTableColumn(tableType, cellTextInput) {
+  for (var i = 0; i < 7; i++) {
     const tableRow = document.createElement('tr')
-    const dayOfTheWeek = document.createElement('td')
-    const dailyOunces = document.createElement('td')
-    let cellText = document.createTextNode([days[i]])
 
-    hydrationTable.appendChild(tableRow).appendChild(dayOfTheWeek).appendChild(cellText)
-    cellText = document.createTextNode(`${weeklyHydration[i].numOunces} ounces`)
-    hydrationTable.appendChild(tableRow).appendChild(dailyOunces).appendChild(cellText)
+    for (var j = 0; j < cellTextInput.length; j++) {
+      const tableCell = document.createElement('td')
+      const cellText = document.createTextNode(cellTextInput[j][i])
+      tableType.appendChild(tableRow).appendChild(tableCell).appendChild(cellText)
+    }
   }
-
 }
