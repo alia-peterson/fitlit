@@ -65,6 +65,17 @@ class UserRepository {
 
     return bestSleepers
   }
+
+  returnAverageActivityData(day, activityType, inputData = activityData) {
+    const entriesByDate = inputData.filter(entry => entry.date === day)
+    const entriesByActivity = entriesByDate.map(entry => entry[activityType])
+
+    const average = entriesByActivity.reduce((value, entry, index, array) => {
+      return value += entry / array.length
+    }, 0)
+
+    return average.toFixed(0)
+  }
 }
 
 

@@ -7,7 +7,7 @@ const UserRepository = require('../src/userRepository')
 const Hydration = require('../data/hydration-data')
 
 describe('User Repository', () => {
-  let userRepository, userData1, userData2, userData3, user1, user2, user3, sleepData
+  let userRepository, userData1, userData2, userData3, user1, user2, user3, sleepData, activityData
 
   beforeEach( () => {
     userData1 = UserTestData.userData[0]
@@ -35,6 +35,22 @@ describe('User Repository', () => {
         "date": "2019/06/15",
         "hoursSlept": 10.8,
         "sleepQuality": 4.7
+      }]
+
+      activityData = [
+      {
+        "userID": 1,
+        "date": "2019/06/15",
+        "numSteps": 3577,
+        "minutesActive": 140,
+        "flightsOfStairs": 16
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/15",
+        "numSteps": 4294,
+        "minutesActive": 138,
+        "flightsOfStairs": 10
       }]
   })
 
@@ -81,5 +97,17 @@ describe('User Repository', () => {
     const best = userRepository.returnBestSleepers("2019/06/15", sleepData)
 
     expect(best).to.deep.equal([user3])
+  })
+
+  it('should return the average values for all users', () => {
+    userRepository.populateUserData('activityEntry', activityData)
+    const average1 = userRepository.returnAverageActivityData('2019/06/15', 'numSteps', activityData)
+    expect(average1).to.equal('3936')
+
+    const average2 = userRepository.returnAverageActivityData('2019/06/15', 'minutesActive', activityData)
+    expect(average2).to.equal('139')
+
+    const average3 = userRepository.returnAverageActivityData('2019/06/15', 'flightsOfStairs', activityData)
+    expect(average3).to.equal('13')
   })
 })
