@@ -1,5 +1,5 @@
 class User {
-  constructor( userData ) {
+  constructor(userData) {
   	this.id = userData.id
   	this.name = userData.name
     this.address = userData.address
@@ -20,11 +20,28 @@ class User {
     }, 0)
   }
 
+  calculateAverageBetweenDates(type, property, startDate, endDate) {
+    const reducedEntries = this.returnReducedEntries(type, startDate, endDate)
+    return reducedEntries.reduce((value, day) => {
+      return value += day[property] / reducedEntries.length
+    }, 0)
+  }
+
   returnDailyValue(type, property, date) {
     return this[type].find(day => day.date === date)[property]
   }
 
   returnWeeklyValue(type, property, startDate, endDate) {
+    const reducedEntries = this.returnReducedEntries(type, startDate, endDate)
+    return reducedEntries.map(entry => entry[property])
+  }
+
+  returnMilesWalked(type, property, date) {
+    const numberSteps = this.returnDailyValue(type, property, date)
+    return (numberSteps * this.strideLength / 5280).toFixed(2)
+  }
+
+  returnReducedEntries(type, startDate, endDate) {
     const startEntry = this[type].find(entry => entry.date === startDate)
     const startIndex = this[type].indexOf(startEntry)
 
@@ -32,13 +49,7 @@ class User {
     const endIndex = this[type].indexOf(endEntry)
 
     const reducedEntries = this[type].slice(startIndex, endIndex + 1)
-
-    return reducedEntries.map(entry => entry[property])
-  }
-
-  returnMilesWalked(type, property, date) {
-    const numberSteps = this.returnDailyValue(type, property, date)
-    return (numberSteps * this.strideLength / 5280).toFixed(2)
+    return reducedEntries
   }
 
 }

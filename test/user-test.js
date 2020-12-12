@@ -61,8 +61,7 @@ describe('User', () => {
       "numSteps": 7402,
       "minutesActive": 116,
       "flightsOfStairs": 33
-    }
-    ]
+    }]
   })
 
   it('should be a function', () => {
@@ -126,5 +125,15 @@ describe('User', () => {
   it('should return number of miles walked', () => {
     const miles = user1.returnMilesWalked('activityEntry', 'numSteps', '2019/06/15')
     expect(miles).to.equal('2.91')
+  })
+
+  it('should return the numbers active for a specified date', () => {
+    const minutes = user1.returnDailyValue('activityEntry', 'minutesActive', '2019/06/15')
+    expect(minutes).to.equal(140)
+  })
+
+  it('should calculate average minutes active between two dates', () => {
+    const avgMinutes = user1.calculateAverageBetweenDates('activityEntry', 'minutesActive', '2019/06/15', '2019/06/17')
+    expect(avgMinutes.toFixed(1)).to.equal('131.3')
   })
 })
