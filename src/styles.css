@@ -75,6 +75,11 @@ p {
   width: 8em;
 }
 
+.icon--small {
+  justify-content: center;
+  width: 4em;
+}
+
 .navigation--bar {
   background-color: #BBDEFB;
   display: block;
