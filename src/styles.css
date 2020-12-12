@@ -14,18 +14,28 @@ p {
 
 .box--xsmall {
   height: 45px;
+  text-align: left;
 }
 
 .box--small {
   height: 110px;
+  text-align: left;
 }
 
 .box--medium {
+  align-items: center;
   height: 380px;
+  text-align: center;
 }
 
 .box--large {
   height: 175px;
+  text-align: center;
+}
+
+.box--header {
+  font-size: 1.2em;
+  margin-top: 0.4em;
 }
 
 .container {
@@ -37,7 +47,6 @@ p {
   justify-content: space-between;
   margin: 10px;
   padding: 10px;
-  text-align: left;
   width: 350px;
 }
 
@@ -61,10 +70,9 @@ p {
   display: none !important;
 }
 
-.site {
-  display: flex;
-  height: 100%;
-
+.icon--large {
+  justify-content: center;
+  width: 8em;
 }
 
 .navigation--bar {
@@ -72,15 +80,25 @@ p {
   padding-top: 100px;
 }
 
+.site {
+  display: flex;
+  height: 100%;
+}
+
 .user--data {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .user--data-medium {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.user--data-sleep {
+  width: 8em;
 }
 
 .user--information {
