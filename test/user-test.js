@@ -58,7 +58,7 @@ describe('User', () => {
     {
       "userID": 1,
       "date": "2019/06/17",
-      "numSteps": 7402,
+      "numSteps": 17402,
       "minutesActive": 116,
       "flightsOfStairs": 33
     }]
@@ -140,5 +140,10 @@ describe('User', () => {
   it('should return whether the user achieved their step goal for a given date', () => {
     const achieve = user1.returnAchievedStepGoal('2019/06/15')
     expect(achieve).to.equal(false)
+  })
+
+  it('should return all dates where step goal was exceeded', () => {
+    const days = user1.returnDaysExceededStepGoal()
+    expect(days).to.deep.equal(['2019/06/17'])
   })
 })

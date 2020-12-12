@@ -64,6 +64,14 @@ class User {
     return false
   }
 
+  returnDaysExceededStepGoal() {
+    const daysExceedingStepGoal = this.activityEntry.filter(entry => {
+      return entry.numSteps >= this.dailyStepGoal
+    })
+
+    return daysExceedingStepGoal.map(entry => entry.date)
+  }
+
 }
 
 if (typeof module !== 'undefined') {
