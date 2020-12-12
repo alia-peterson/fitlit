@@ -72,6 +72,14 @@ class User {
     return daysExceedingStepGoal.map(entry => entry.date)
   }
 
+  returnStairClimbingRecord() {
+    const sortedStairRecord = this.activityEntry.sort((a, b) => {
+      return b.flightsOfStairs - a.flightsOfStairs
+    })
+
+    return sortedStairRecord[0].flightsOfStairs
+  }
+
 }
 
 if (typeof module !== 'undefined') {

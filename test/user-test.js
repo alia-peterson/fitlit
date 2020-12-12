@@ -146,4 +146,9 @@ describe('User', () => {
     const days = user1.returnDaysExceededStepGoal()
     expect(days).to.deep.equal(['2019/06/17'])
   })
+
+  it('should return the user all time stair climbing record', () => {
+    const stairs = user1.returnStairClimbingRecord()
+    expect(stairs).to.equal(33)
+  })
 })
