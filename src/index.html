@@ -15,7 +15,7 @@
       <img id="navigation--home" class="navigation--logo" src="../assets/home-icon.svg" alt="Home Icon">
       <img id="navigation--graphs" class="navigation--logo" src="../assets/graph-icon.svg" alt="Bar Graph Icon">
     </nav>
-    <article class="dashboard hidden">
+    <article class="dashboard">
       <select class="group--list" name=""></select>
       <header class="header">
         <h1 class="user--welcome">Welcome, Jarvis!</h1>
@@ -44,7 +44,7 @@
         </article>
         <article class="container box--medium">
           <h2 class="box--header">Your Sleep</h2>
-          <p>Today</p>
+          <h3>Today</h3>
           <img class="icon--large" src="../assets/sleep-icon.svg" alt="Sleep icon">
           <section class="user--data">
             <div class="user--data-sleep">
@@ -53,6 +53,17 @@
             </div>
             <div class="user--data-sleep">
               <p class="user--daily-quality">10/10</p>
+              <p>Quality</p>
+            </div>
+          </section>
+          <h3>Average</h3>
+          <section class="user--data">
+            <div class="user--data-sleep">
+              <p class="user--average-hours">Hrs</p>
+              <p>Quantity</p>
+            </div>
+            <div class="user--data-sleep">
+              <p class="user--average-quality">10/10</p>
               <p>Quality</p>
             </div>
           </section>
@@ -68,14 +79,14 @@
           </article>
           <article class="container box--large">
             <h2 class="box--header">Your Hydration</h2>
-            <p>Today</p>
+            <h3>Today</h3>
             <img src="../assets/water-drop.svg" alt="Water drop icon">
             <p class="user--daily-water">Ounces</p>
           </article>
         </section>
       </section>
     </article>
-    <section class="graphs">
+    <section class="graphs hidden">
       <article>
         <table>
           <thead>

@@ -17,6 +17,8 @@ const hydrationTable = document.querySelector('#table--hydration')
 const sleepTable = document.querySelector('#table--sleep')
 const userHoursSlept = document.querySelector('.user--daily-hours')
 const userQuantitySlept = document.querySelector('.user--daily-quality')
+const userAvgHoursSlept = document.querySelector('.user--average-hours')
+const userAvgQuantitySlept = document.querySelector('.user--average-quality')
 
 
 window.addEventListener('load', ( event ) => {
@@ -38,7 +40,6 @@ graphIcon.addEventListener('click', ( event ) => {
     toggleView()
   }
 })
-
 
 groupList.addEventListener('change', ( event ) => {
   populateDashboard()
@@ -66,6 +67,9 @@ function populateDashboard() {
   populateUserStatistics('hydrationEntry', userWater, 'numOunces', 'oz')
   populateUserStatistics('sleepEntry', userHoursSlept, 'hoursSlept', 'Hrs')
   populateUserStatistics('sleepEntry', userQuantitySlept, 'sleepQuality', '/ 10')
+
+  populateAverageStatistics('sleepEntry', userAvgHoursSlept, 'hoursSlept', 'Hrs')
+  populateAverageStatistics('sleepEntry', userAvgQuantitySlept, 'sleepQuality', '/ 10')
 
   createUserDataTable(hydrationTable, 'hydrationEntry', ['numOunces'], ['ounces'])
   createUserDataTable(sleepTable, 'sleepEntry', ['hoursSlept', 'sleepQuality'], ['hours', '/ 10 quality'])
@@ -104,6 +108,11 @@ function populateUserStatistics(dataType, statisticType, propertyType, units) {
   const userData = userRepository.currentUser[dataType]
   const latestEntry = userData.length - 1
   statisticType.innerText = `${userData[latestEntry][propertyType]} ${units}`
+}
+
+function populateAverageStatistics(dataType, statisticType, propertyType, units) {
+  const userData = userRepository.currentUser.calculateLifetimeAverage(dataType, propertyType)
+  statisticType.innerText = `${userData.toFixed(1)} ${units}`
 }
 
 function toggleView() {
