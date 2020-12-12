@@ -28,17 +28,41 @@ describe('User', () => {
     }]
 
     user1.sleepEntry = [{
-        "userID": 1,
-        "date": "2019/06/15",
-        "hoursSlept": 6.1,
-        "sleepQuality": 2.2
-      },
-      {
-        "userID": 2,
-        "date": "2019/07/15",
-        "hoursSlept": 7,
-        "sleepQuality": 4.7
-      }]
+      "userID": 1,
+      "date": "2019/06/15",
+      "hoursSlept": 6.1,
+      "sleepQuality": 2.2
+    },
+    {
+      "userID": 2,
+      "date": "2019/07/15",
+      "hoursSlept": 7,
+      "sleepQuality": 4.7
+    }]
+
+    user1.activityEntry = [
+    {
+      "userID": 1,
+      "date": "2019/06/15",
+      "numSteps": 3577,
+      "minutesActive": 140,
+      "flightsOfStairs": 16
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/16",
+      "numSteps": 4294,
+      "minutesActive": 138,
+      "flightsOfStairs": 10
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/17",
+      "numSteps": 7402,
+      "minutesActive": 116,
+      "flightsOfStairs": 33
+    }
+    ]
   })
 
   it('should be a function', () => {
@@ -97,5 +121,10 @@ describe('User', () => {
   it('should return daily sleep quality between two dates', () => {
     const quality = user1.returnWeeklyValue('sleepEntry', 'sleepQuality', '2019/06/15', '2019/07/15')
     expect(quality).to.deep.equal([2.2, 4.7])
+  })
+
+  it('should return number of miles walked', () => {
+    const miles = user1.returnMilesWalked('activityEntry', 'numSteps', '2019/06/15')
+    expect(miles).to.equal('2.91')
   })
 })
