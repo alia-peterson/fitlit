@@ -67,8 +67,8 @@ function populateDashboard() {
   populateUserStatistics('sleepEntry', userHoursSlept, 'hoursSlept', 'Hrs')
   populateUserStatistics('sleepEntry', userQuantitySlept, 'sleepQuality', '/ 10')
 
-  createUserDataTable(hydrationTable, 'hydrationEntry', 'numOunces', 'ounces')
-  // createUserDataTable(sleepTable, 'sleepEntry', 'hoursSlept', 'hours')
+  createUserDataTable(hydrationTable, 'hydrationEntry', ['numOunces'], ['ounces'])
+  createUserDataTable(sleepTable, 'sleepEntry', ['hoursSlept', 'sleepQuality'], ['hours', '/ 10 quality'])
 }
 
 function populateGroupData(type, dataList) {
@@ -116,12 +116,18 @@ function createUserDataTable(tableType, dataType, propertyType, units) {
   const userData = userRepository.currentUser[dataType]
   const latestEntry = userData.length
   const weeklyData = userData.slice(latestEntry - 7, latestEntry)
-                              .map(each => `${each[propertyType]} ${units}`)
 
   const days = [
     'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
   ]
-  createTableColumn(tableType, [days, weeklyData])
+
+  const dataColumns = [days]
+
+  propertyType.forEach((entry, index) => {
+    dataColumns.push(weeklyData.map(each => `${each[entry]} ${units[index]}`))
+  })
+
+  createTableColumn(tableType, dataColumns)
 }
 
 function createTableColumn(tableType, cellTextInput) {
