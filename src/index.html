@@ -4,11 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <style>
+    {
+      box-sizing: border-box;
+    }
+  </style>
   <title>Activity Tracker</title>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="./styles.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
 </head>
-
 <body>
   <section class="site">
     <nav class="navigation--bar">
@@ -25,22 +31,23 @@
       </header>
       <section class="user--information">
         <article class="container box--small">
+          <p id="my-info">MY INFORMATION</p>
           <p class="user--name">Name: </p>
           <p class="user--address">Address: </p>
-          <p class="user--email">Email: </p>
+          <p class="user--email">Email:</p>
         </article>
         <article class="container box--small">
           <p class="user--stride">Stride Length</p>
           <p class="user--step">Daily Step Goal</p>
         </article>
         <article class="container box--small">
-          <p class="user--step">Your Step Goal</p>
+          <p class="user--step">Step Goal</p>
           <p class="group--step">Average Steps for All Users</p>
         </article>
       </section>
       <section class="user--data">
         <article class="container box--large">
-          <h2 class="box--header">Your Activity</h2>
+          <h2 class="box--header">My Daily Summary</h2>
           <div class="box--body">
             <section class="box--body-top">
               <h3>Steps</h3>
@@ -53,20 +60,20 @@
               <p id="user--daily-miles">5 miles</p>
             </section>
             <section class="box--body-bottom">
-              <h3>Time</h3>
+              <h3>Movement</h3>
               <img class="icon--small" src="../assets/stopwatch-icon.svg" alt="Stopwatch icon">
               <p id="user--daily-time">5 minutes</p>
             </section>
             <section class="box--body-bottom">
-              <h3>Stairs Climbed</h3>
+              <h3>Floors Climbed</h3>
               <img class="icon--small" src="../assets/stairs-icon.svg" alt="Distance icon">
-              <p id="user--daily-stairs">5 flights</p>
+              <p id="user--daily-stairs">5 floors</p>
             </section>
           </div>
         </article>
         <article class="container box--large">
-          <h2 class="box--header">Your Sleep</h2>
-          <h3>Today</h3>
+          <h2 class="box--header">Today's Sleep</h2>
+          <!-- <h3>Today</h3> -->
           <img class="icon--large" src="../assets/sleep-icon.svg" alt="Sleep icon">
           <section class="user--data">
             <div class="user--data-sleep">
@@ -79,7 +86,7 @@
             </div>
           </section>
           <input type="datetime-local" name="" value="">
-          <h3>Average</h3>
+          <h3>Life-Time Average</h3>
           <section class="user--data">
             <div class="user--data-sleep">
               <p class="user--average-hours">Hrs</p>
@@ -93,15 +100,15 @@
         </article>
         <section class="user--data-medium">
           <article class="container box--medium">
-            <h2 class="box--header">Your Friends</h2>
+            <h2 class="box--header">Friends</h2>
             <p>Clark Kent</p>
             <p>Draco Malfoy</p>
             <p>Diana Prince</p>
             <p>Tony Stark</p>
           </article>
           <article class="container box--medium">
-            <h2 class="box--header">Your Hydration</h2>
-            <h3>Today</h3>
+            <h2 class="box--header">Today's Hydration</h2>
+            <!-- <h3>Today</h3> -->
             <img class="icon--small" src="../assets/waterdrop-icon.svg" alt="Water drop icon">
             <p class="user--daily-water">Ounces</p>
           </article>
@@ -134,6 +141,7 @@
       <article></article>
       <article></article>
     </article>
+
   </section>
   <script type="text/javascript" src="../src/user.js"></script>
   <script type="text/javascript" src="../src/userRepository.js"></script>
