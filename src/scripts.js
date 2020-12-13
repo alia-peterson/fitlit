@@ -19,6 +19,11 @@ const userHoursSlept = document.querySelector('.user--daily-hours')
 const userQuantitySlept = document.querySelector('.user--daily-quality')
 const userAvgHoursSlept = document.querySelector('.user--average-hours')
 const userAvgQuantitySlept = document.querySelector('.user--average-quality')
+const userDailySteps = document.querySelector('#user--daily-steps')
+const userDailyMiles = document.querySelector('#user--daily-miles')
+const userDailyTime = document.querySelector('#user--daily-time')
+const userDailyStairs = document.querySelector('#user--daily-stairs')
+
 
 
 window.addEventListener('load', ( event ) => {
@@ -26,6 +31,7 @@ window.addEventListener('load', ( event ) => {
   populateGroupList()
   populateGroupData('hydrationEntry', hydrationData)
   populateGroupData('sleepEntry', sleepData)
+  populateGroupData('activityEntry', activityData)
   populateDashboard()
 })
 
@@ -68,8 +74,14 @@ function populateDashboard() {
   populateUserStatistics('sleepEntry', userHoursSlept, 'hoursSlept', 'Hrs')
   populateUserStatistics('sleepEntry', userQuantitySlept, 'sleepQuality', '/ 10')
 
+  populateUserStatistics('activityEntry', userDailySteps, 'numSteps', '')
+  populateUserStatistics('activityEntry', userDailyTime, 'minutesActive', 'minutes')
+  populateUserStatistics('activityEntry', userDailyStairs, 'flightsOfStairs', 'flights')
+
   populateAverageStatistics('sleepEntry', userAvgHoursSlept, 'hoursSlept', 'Hrs')
   populateAverageStatistics('sleepEntry', userAvgQuantitySlept, 'sleepQuality', '/ 10')
+
+  userDailyMiles.innerText = `${userRepository.currentUser.returnMilesWalked('activityEntry', 'numSteps')} miles`
 
   createUserDataTable(hydrationTable, 'hydrationEntry', ['numOunces'], ['ounces'])
   createUserDataTable(sleepTable, 'sleepEntry', ['hoursSlept', 'sleepQuality'], ['hours', '/ 10 quality'])

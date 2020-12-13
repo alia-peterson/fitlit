@@ -39,7 +39,7 @@ class User {
     return reducedEntries.map(entry => entry[property])
   }
 
-  returnMilesWalked(type, property, date) {
+  returnMilesWalked(type, property, date = "2019/09/22") {
     const numberSteps = this.returnDailyValue(type, property, date)
     return (numberSteps * this.strideLength / 5280).toFixed(2)
   }
