@@ -114,8 +114,6 @@ p {
     padding-bottom: 0%;
     width: auto;
     height: auto;
-
-
     background: #F5F6F7;
     /* overflow: hidden; */
     border-radius: 1px;
@@ -125,6 +123,10 @@ p {
     font-family: 'Roboto', sans-serif;
 }
 
+  /* h1 {
+  margin-left: 35px;
+  margin-bottom: 30px;
+} */
 
 .header {
   align-items: center;
