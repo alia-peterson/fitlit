@@ -20,7 +20,8 @@ canvas {
 p {
   margin: 0;
   text-align: center;
-  color: #FFFFFF;
+  color: #1E3659;
+
 }
 
 .box--xsmall {
@@ -99,6 +100,10 @@ p {
   flex-wrap: wrap;
 }
 
+.date {
+  color: #FFFFFF;
+}
+
 .graphs {
   color: #F5F6F7;
   display: flex;
@@ -107,7 +112,7 @@ p {
 }
 
 .group--list  {
-  display: none; */
+    /* display: none;  */
     position: absolute;
     left: 52%;
     padding-top: 0%;
@@ -132,7 +137,7 @@ p {
   align-items: center;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 50px;
   width: 1110px;
 }
@@ -152,6 +157,8 @@ p {
 }
 
 .navigation--bar {
+  border: 2px solid #F5F6F7;
+  border-radius: 0.25em;
   background-color: #9EB5BA;
   display: block;
   margin-right: 10px;
@@ -173,7 +180,7 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-
+  font-size: 1em;
 }
 
 .user--data-medium {
@@ -183,6 +190,8 @@ p {
   color: #1E3659;
   height: 30em;
   margin-top: 10px;
+
+
 }
 
 .user--data-sleep {
@@ -193,6 +202,12 @@ p {
   display: flex;
   flex-direction: row;
   margin-bottom: 0em;
+}
+
+.user--name--date {
+  border: 2px, solid, #FFFFFF;
+  border-radius: 50%;
+  color: black;
 }
 
 .user--welcome {
