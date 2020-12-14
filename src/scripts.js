@@ -23,7 +23,7 @@ const userDailySteps = document.querySelector('#user--daily-steps')
 const userDailyMiles = document.querySelector('#user--daily-miles')
 const userDailyTime = document.querySelector('#user--daily-time')
 const userDailyStairs = document.querySelector('#user--daily-stairs')
-
+const graphContainer = document.querySelector('.graph--container')
 
 
 window.addEventListener('load', ( event ) => {
@@ -44,6 +44,7 @@ homeIcon.addEventListener('click', ( event ) => {
 graphIcon.addEventListener('click', ( event ) => {
   if (graphView.classList.contains("hidden")) {
     toggleView()
+    displayGraphs()
   }
 })
 
@@ -82,9 +83,7 @@ function populateDashboard() {
   populateAverageStatistics('sleepEntry', userAvgQuantitySlept, 'sleepQuality', '/ 10')
 
   userDailyMiles.innerText = `${userRepository.currentUser.returnMilesWalked('activityEntry', 'numSteps')} miles`
-
-  createUserDataTable(hydrationTable, 'hydrationEntry', ['numOunces'], ['ounces'])
-  createUserDataTable(sleepTable, 'sleepEntry', ['hoursSlept', 'sleepQuality'], ['hours', '/ 10 quality'])
+  populateGraphInformation()
 }
 
 function populateGroupData(type, dataList) {
@@ -132,33 +131,25 @@ function toggleView() {
   graphView.classList.toggle('hidden')
 }
 
-function createUserDataTable(tableType, dataType, propertyType, units) {
-  tableType.innerText = ''
-  const userData = userRepository.currentUser[dataType]
-  const latestEntry = userData.length
-  const weeklyData = userData.slice(latestEntry - 7, latestEntry)
-
-  const days = [
-    'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
-  ]
-
-  const dataColumns = [days]
-
-  propertyType.forEach((entry, index) => {
-    dataColumns.push(weeklyData.map(each => `${each[entry]} ${units[index]}`))
-  })
-
-  createTableColumn(tableType, dataColumns)
+function displayGraphs() {
+  const graph = document.createElement('canvas')
+  graph.id = 'graph--display'
+  graph.display = false
+  graphContainer.appendChild(graph)
 }
 
-function createTableColumn(tableType, cellTextInput) {
-  for (var i = 0; i < 7; i++) {
-    const tableRow = document.createElement('tr')
+function populateGraphInformation() {
+  ounces = userRepository.currentUser.returnWeeklyValue('hydrationEntry', 'numOunces')
+  hours = userRepository.currentUser.returnWeeklyValue('sleepEntry', 'hoursSlept')
+  quality = userRepository.currentUser.returnWeeklyValue('sleepEntry', 'sleepQuality')
+  minutes = userRepository.currentUser.returnWeeklyValue('activityEntry', 'minutesActive')
+  steps = transformStepUnits()
+  createGraphs()
+}
 
-    for (var j = 0; j < cellTextInput.length; j++) {
-      const tableCell = document.createElement('td')
-      const cellText = document.createTextNode(cellTextInput[j][i])
-      tableType.appendChild(tableRow).appendChild(tableCell).appendChild(cellText)
-    }
-  }
+function transformStepUnits() {
+  const userSteps = userRepository.currentUser.returnWeeklyValue('activityEntry', 'numSteps')
+  const newSteps = userSteps.map(entry => entry / 100)
+
+  return newSteps
 }

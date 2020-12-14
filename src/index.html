@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1" name="viewport" />
-  <style>
-    {
-      box-sizing: border-box;
-    }
-  </style>
   <title>Activity Tracker</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <link rel="stylesheet" type="text/css" href="./styles.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -31,18 +26,18 @@
       </header>
       <section class="user--information">
         <article class="container box--small">
-          <p id="my-info">MY INFORMATION</p>
+          <h2 class="box--header">My Information</h2>
           <p class="user--name">Name: </p>
           <p class="user--address">Address: </p>
           <p class="user--email">Email:</p>
-        </article>
-        <article class="container box--small">
           <p class="user--stride">Stride Length</p>
-          <p class="user--step">Daily Step Goal</p>
         </article>
         <article class="container box--small">
+          <h2 class="box--header">My Data</h2>
           <p class="user--step">Step Goal</p>
           <p class="group--step">Average Steps for All Users</p>
+          <p class="group--stairs">Average Flights of Stairs for All Users</p>
+          <p class="group--minutes">Average Minutes Active for All Users</p>
         </article>
       </section>
       <section class="user--data">
@@ -85,7 +80,7 @@
               <p>Quality</p>
             </div>
           </section>
-          <input type="datetime-local" name="" value="">
+          <!-- <input type="datetime-local" name="" value=""> -->
           <h3>Life-Time Average</h3>
           <section class="user--data">
             <div class="user--data-sleep">
@@ -116,40 +111,20 @@
       </section>
     </article>
     <article class="graphs hidden">
-      <article class="graphs--hydration">
-        <table>
-          <thead>
-            <tr>
-              <th colspan="2">Weekly Hydration Information</th>
-            </tr>
-          </thead>
-          <tbody id="table--hydration">
-          </tbody>
-        </table>
-      </article>
-      <article class="graphs--sleep">
-        <table>
-          <thead>
-            <tr>
-              <th colspan="3">Weekly Sleep Information</th>
-            </tr>
-          </thead>
-          <tbody id="table--sleep">
-          </tbody>
-        </table>
-      </article>
-      <article></article>
-      <article></article>
+      <div class="graph--container">
+        <canvas id="graph--hydration"></canvas>
+        <canvas id="graph--sleep"></canvas>
+        <canvas id="graph--steps"></canvas>
+      </div>
     </article>
-
   </section>
-  <script type="text/javascript" src="../src/user.js"></script>
-  <script type="text/javascript" src="../src/userRepository.js"></script>
+  <script type="text/javascript" src="./user.js"></script>
+  <script type="text/javascript" src="./userRepository.js"></script>
   <script type="text/javascript" src="../data/users-data.js"></script>
   <script type="text/javascript" src="../data/hydration-data.js"></script>
   <script type="text/javascript" src="../data/sleep-data.js"></script>
   <script type="text/javascript" src="../data/activity-data.js"></script>
   <script type="text/javascript" src="./scripts.js"></script>
+  <script type="text/javascript" src="./chart.js"></script>
 </body>
-
 </html>
