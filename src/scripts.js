@@ -5,7 +5,10 @@ const userAddress = document.querySelector('.user--address')
 const userEmail = document.querySelector('.user--email')
 const userStrideLength = document.querySelector('.user--stride')
 const userStepGoal = document.querySelectorAll('.user--step')
-const groupAverageStepGoal = document.querySelector('.group--step')
+const groupAverageStepGoal = document.querySelector('.group--step-goal')
+const groupAverageStairStat = document.querySelector('.group--stairs')
+const groupAverageStepStat = document.querySelector('.group--steps')
+const groupAverageMinutesStat = document.querySelector('.group--minutes')
 const groupList = document.querySelector('.group--list')
 const todaysDate = document.querySelector('.date')
 const userWater = document.querySelector('.user--daily-water')
@@ -81,6 +84,10 @@ function populateDashboard() {
 
   populateAverageStatistics('sleepEntry', userAvgHoursSlept, 'hoursSlept', 'Hrs')
   populateAverageStatistics('sleepEntry', userAvgQuantitySlept, 'sleepQuality', '/ 10')
+
+  groupAverageStepStat.innerText = userRepository.returnAverageActivityData('2019/09/22', 'numSteps')
+  groupAverageStairStat.innerText = userRepository.returnAverageActivityData('2019/09/22', 'flightsOfStairs')
+  groupAverageMinutesStat.innerText = userRepository.returnAverageActivityData('2019/09/22', 'minutesActive')
 
   userDailyMiles.innerText = `${userRepository.currentUser.returnMilesWalked('activityEntry', 'numSteps')} miles`
   populateGraphInformation()
