@@ -79,7 +79,7 @@ p {
 }
 
 .container {
-  border: 1px solid #F5F6F7;
+  border: 5px solid #F5F6F7;
   border-radius: 0.25em;
   box-sizing: border-box;
   display: flex;
