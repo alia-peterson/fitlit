@@ -34,7 +34,7 @@ class User {
     return this[type].find(day => day.date === date)[property]
   }
 
-  returnWeeklyValue(type, property, startDate, endDate) {
+  returnWeeklyValue(type, property, startDate = "2019/09/15", endDate = "2019/09/22") {
     const reducedEntries = this.returnReducedEntries(type, startDate, endDate)
     return reducedEntries.map(entry => entry[property])
   }
@@ -46,12 +46,12 @@ class User {
 
   returnReducedEntries(type, startDate, endDate) {
     const startEntry = this[type].find(entry => entry.date === startDate)
-    const startIndex = this[type].indexOf(startEntry)
+    const startIndex = this[type].indexOf(startEntry) + 1
 
     const endEntry = this[type].find(entry => entry.date === endDate)
-    const endIndex = this[type].indexOf(endEntry)
+    const endIndex = this[type].indexOf(endEntry) + 1
 
-    const reducedEntries = this[type].slice(startIndex, endIndex + 1)
+    const reducedEntries = this[type].slice(startIndex, endIndex)
     return reducedEntries
   }
 
@@ -73,11 +73,13 @@ class User {
   }
 
   returnStairClimbingRecord() {
-    const sortedStairRecord = this.activityEntry.sort((a, b) => {
+    const activities = this.activityEntry
+    
+    activities.sort((a, b) => {
       return b.flightsOfStairs - a.flightsOfStairs
     })
 
-    return sortedStairRecord[0].flightsOfStairs
+    return activities[0].flightsOfStairs
   }
 
 }
