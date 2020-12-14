@@ -106,6 +106,26 @@ p {
 
 }
 
+.group--list  {
+  /* display: none; */
+    position: absolute;
+    left: 52%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    width: auto;
+    height: auto;
+
+
+    background: #F5F6F7;
+    /* overflow: hidden; */
+    border-radius: 1px;
+
+    /* border: 1px solid #edede6; */
+    font-size: 2vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+
 .header {
   align-items: center;
   display: flex;
@@ -151,6 +171,7 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+
 }
 
 .user--data-medium {
