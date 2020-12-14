@@ -107,7 +107,7 @@ p {
 }
 
 .group--list  {
-  /* display: none; */
+  display: none; */
     position: absolute;
     left: 52%;
     padding-top: 0%;
