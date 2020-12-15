@@ -108,10 +108,10 @@ function populateUserInformation() {
   userAddress.innerText = `Address: ${currentUser.address}`
   userEmail.innerText = `Email: ${currentUser.email}`
   userStrideLength.innerText = `Stride Length: ${currentUser.strideLength}-ft`
-  groupAverageStepGoal.innerText = `Average Step Goal for All Users: ${userRepository.calculateAverageStepGoal()} steps`
+  groupAverageStepGoal.innerText = `Step Goal All Users: ${userRepository.calculateAverageStepGoal()}`
 
   userStepGoal.forEach( goal => {
-    goal.innerText = `Daily Step Goal: ${currentUser.dailyStepGoal} steps`
+    goal.innerText = `Daily Step Goal: ${currentUser.dailyStepGoal}`
   })
 }
 

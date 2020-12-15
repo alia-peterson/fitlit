@@ -88,11 +88,19 @@ class UserRepository {
       friendSteps.push(returnReducedFriendValues(friend))
     })
 
-
     const friendNames = []
     friends.forEach(friend => {
       friendNames.push(userRepository[friend - 1].name)
     })
+
+    const friendsWithSteps = []
+    friendNames.forEach(name => {
+      friendsWithSteps.push(name.reduce((acc, curr, arr, index) => {
+        acc[curr] = friendSteps[index]
+        return acc
+      }, {}))
+    })
+    return friendsWithSteps
   }
 
   returnReducedFriendValues(friendID) {

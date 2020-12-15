@@ -1,7 +1,6 @@
 # FitLit Starter Kit
 
 The details of this project are outline in [this project spec](http://frontend.turing.io/projects/fitlit.html).
-
 ## Setup
 
 1. Within your group, decide on one person to have the project repository (repo) on their GitHub account. Then, that person should fork this repo - on the top right corner of this page, click the **Fork** button.

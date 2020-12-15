@@ -7,8 +7,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <link rel="stylesheet" type="text/css" href="./styles.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
   <section class="site">
@@ -22,18 +22,18 @@
       <header class="header">
         <article class="user--name--date">
         <h1 class="user--welcome">Welcome, Jarvis!</h1>
-        <p class="date">Date</p>
+        <h2 class="date">Date</h2>
       </article>
       </header>
       <section class="user--information">
         <article class="container box--small">
-          <h2 class="box--header">My Information</h2>
+          <h2 class="box--header">🗒 My Information</h2>
           <p class="user--name">Name: </p>
           <p class="user--address">Address: </p>
           <p class="user--email">Email:</p>
         </article>
         <article class="container box--small">
-          <h2 class="box--header">My Data</h2>
+          <h2 class="box--header">👟 My Steps</h2>
           <p class="user--stride">Stride Length</p>
           <p class="user--step">Step Goal</p>
           <p class="group--step-goal">Average Steps for All Users</p>
@@ -59,22 +59,22 @@
               <p id="user--daily-time">5 minutes</p>
             </section>
             <section class="box--body-bottom">
-              <h3>Floors Climbed</h3>
+              <h3>Floors</h3>
               <img class="icon--small" src="../assets/stairs-icon.svg" alt="Distance icon">
               <p id="user--daily-stairs">5 floors</p>
             </section>
-            <h2>Previous Day Averages</h2>
+            <h2>All Users Average </h2>
             <table>
               <tr>
-                <td>Steps All Users</td>
+                <td>Steps</td>
                 <td class="group--steps">""</td>
               </tr>
               <tr>
-                <td>Flights All Users</td>
+                <td>Flights</td>
                 <td class="group--stairs">""</td>
               </tr>
               <tr>
-                <td>Minutes Active All Users</td>
+                <td>Minutes Active</td>
                 <td class="group--minutes">""</td>
               </tr>
             </table>
@@ -109,6 +109,7 @@
         <section class="user--data-medium">
           <article class="container box--medium">
             <h2 class="box--header">Friends</h2>
+            <!-- <img class="icon--small" src="../assets/friend-icon.svg" alt="Friend Group icon"> -->
             <p>Clark Kent</p>
             <p>Draco Malfoy</p>
             <p>Diana Prince</p>
@@ -128,6 +129,7 @@
         <canvas class="graph--display" id="graph--hydration"></canvas>
         <canvas class="graph--display" id="graph--sleep"></canvas>
         <canvas class="graph--display" id="graph--steps"></canvas>
+        <canvas class="graph--display" id="graph--stairs" style="height:300px; width:300px" ></canvas>
       </div>
     </article>
   </section>

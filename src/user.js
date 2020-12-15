@@ -74,7 +74,7 @@ class User {
 
   returnStairClimbingRecord() {
     const activities = this.activityEntry
-    
+
     activities.sort((a, b) => {
       return b.flightsOfStairs - a.flightsOfStairs
     })
@@ -83,6 +83,9 @@ class User {
   }
 
 }
+
+
+
 
 if (typeof module !== 'undefined') {
   module.exports = User
