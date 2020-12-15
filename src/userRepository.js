@@ -76,6 +76,41 @@ class UserRepository {
 
     return average.toFixed(0)
   }
+
+  returnWeekStepCount() {
+    const friends = this.currentUser.friends
+    const friendStepValues = friends.map(friend => {
+      return friend.returnReducedFriendValues
+    })
+
+    const friendSteps = []
+    friends.forEach(friend => {
+      friendSteps.push(returnReducedFriendValues(friend))
+    })
+
+
+    const friendNames = []
+    friends.forEach(friend => {
+      friendNames.push(userRepository[friend - 1].name)
+    })
+  }
+
+  returnReducedFriendValues(friendID) {
+    const friendActivityData = activityData.filter(entry => {
+      return entry.userID === friendID
+    })
+
+    const endEntry = friendActivityData.length - 1
+    const startEntry = endEntry - 7
+    const weeklyActivityData = friendActivityData.slice(startEntry, endEntry)
+
+    const weeklySteps = weeklyActivityData.map(entry => entry.numSteps)
+    const totalSteps = weeklySteps.reduce((acc, curr) => {
+      return acc + curr
+    }, 0)
+    return totalSteps
+  }
+
 }
 
 

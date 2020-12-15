@@ -160,3 +160,13 @@ function transformStepUnits() {
 
   return newSteps
 }
+
+function populateFriendData() {
+  const friends = []
+  userRepository.currentUser.friends.forEach((friend, index) => {
+    const user = new User(userData[index])
+    friends.push(user)
+  })
+  const friendNames = friends.map(friend => friend.name)
+  return userRepository.returnWeekStepCount(friendNames)
+}
