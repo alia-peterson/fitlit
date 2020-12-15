@@ -103,7 +103,7 @@ p {
 }
 
 .graphs {
-  color: #F5F6F7;
+  /* color: #F5F6F7; */
   display: flex;
   flex-direction: column;
 }
@@ -120,6 +120,8 @@ p {
   padding: 5em;
   height: 100%;
   width: 100%;
+  /* background-color: #FFFFFF; */
+  box-sizing: border-box;
 }
 
 .group--list  {

@@ -12,6 +12,10 @@ const hydration = document.querySelector("#graph--hydration")
 const sleep = document.querySelector("#graph--sleep")
 const stepsAndMinutes = document.querySelector("#graph--steps")
 
+hydration.style.backgroundColor = 'rgb(157,181,186)'
+sleep.style.backgroundColor =  'rgb(157,181,186)'
+stepsAndMinutes.style.backgroundColor =  'rgb(157,181,186)'
+
 function createGraphs() {
   const hydrationChart = new Chart(hydration, {
     type: 'line',
@@ -23,9 +27,22 @@ function createGraphs() {
           label: 'Ounces',
           borderColor: "#3e95cd",
           fill: true,
-          defaultFontSize: 12
         }
       ]
+    },
+
+    options: {
+      scale: {
+        yAxes: [{
+          ticks: {
+            fontSize: 16
+          }
+        }]
+      },
+      title: {
+        display: true,
+        text: 'Hydration Data -- Previous Week'
+      }
     }
   })
 
@@ -38,7 +55,7 @@ function createGraphs() {
           data: hours,
           label: 'Hours',
           backgroundColor: "#3e95cd",
-          fill: false
+          fill: true
         },
         {
           data: quality,
