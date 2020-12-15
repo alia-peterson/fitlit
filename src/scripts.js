@@ -27,6 +27,8 @@ const userDailyMiles = document.querySelector('#user--daily-miles')
 const userDailyTime = document.querySelector('#user--daily-time')
 const userDailyStairs = document.querySelector('#user--daily-stairs')
 const graphContainer = document.querySelector('.graph--container')
+const friendTable = document.querySelector('#table--friends')
+
 
 
 window.addEventListener('load', ( event ) => {
@@ -91,6 +93,8 @@ function populateDashboard() {
 
   userDailyMiles.innerText = `${userRepository.currentUser.returnMilesWalked('activityEntry', 'numSteps')} miles`
   populateGraphInformation()
+
+  populateFriendTable()
 }
 
 function populateGroupData(type, dataList) {
@@ -169,4 +173,21 @@ function populateFriendData() {
   })
   const friendNames = friends.map(friend => friend.name)
   return userRepository.returnWeekStepCount(friendNames)
+}
+
+function populateFriendTable() {
+  friendTable.innerText = ''
+  const friends = populateFriendData()
+
+  friends.forEach(friend => {
+    const tableRow = document.createElement('tr')
+    const friendCell = document.createElement('td')
+    const friendSteps = document.createElement('td')
+
+    friendCell.innerText = friend.name
+    friendSteps.innerText = friend.steps
+
+    friendTable.appendChild(tableRow).appendChild(friendCell)
+    friendTable.appendChild(tableRow).appendChild(friendSteps)
+  })
 }

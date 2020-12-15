@@ -85,21 +85,22 @@ class UserRepository {
 
     const friendSteps = []
     friends.forEach(friend => {
-      friendSteps.push(returnReducedFriendValues(friend))
+      friendSteps.push(this.returnReducedFriendValues(friend))
     })
 
     const friendNames = []
     friends.forEach(friend => {
-      friendNames.push(userRepository[friend - 1].name)
+      friendNames.push(this.users[friend - 1].name)
     })
 
     const friendsWithSteps = []
-    friendNames.forEach(name => {
-      friendsWithSteps.push(name.reduce((acc, curr, arr, index) => {
-        acc[curr] = friendSteps[index]
-        return acc
-      }, {}))
+    friendNames.forEach((friend, index) => {
+      const friendObject = {}
+      friendObject.name = friend
+      friendObject.steps = friendSteps[index]
+      friendsWithSteps.push(friendObject)
     })
+
     return friendsWithSteps
   }
 
