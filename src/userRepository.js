@@ -100,7 +100,9 @@ class UserRepository {
       friendObject.steps = friendSteps[index]
       friendsWithSteps.push(friendObject)
     })
-
+    friendsWithSteps.sort((a,b) => {
+      return b.steps - a.steps
+    })
     return friendsWithSteps
   }
 
