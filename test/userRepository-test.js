@@ -110,4 +110,11 @@ describe('User Repository', () => {
     const average3 = userRepository.returnAverageActivityData('2019/06/15', 'flightsOfStairs', activityData)
     expect(average3).to.equal('13')
   })
+
+  it('should return friend step information', () => {
+    userRepository.currentUser = user1
+    const friendData = userRepository.returnWeekStepCount(['Jarvis Considine','Herminia Witting'])
+    console.log(friendData)
+  })
+
 })

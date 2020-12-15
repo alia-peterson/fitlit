@@ -89,7 +89,7 @@ describe('User', () => {
 
   it('should return daily ounces consumed between two dates', () => {
     const ounces = user1.returnWeeklyValue('hydrationEntry', 'numOunces', '2019/06/15', '2019/05/15')
-    expect(ounces).to.deep.equal([37, 75])
+    expect(ounces).to.deep.equal([75])
   })
 
   it('should calculate average hours of sleep for all time', () => {
@@ -114,12 +114,12 @@ describe('User', () => {
 
   it('should return daily hours slept between two dates', () => {
     const hours = user1.returnWeeklyValue('sleepEntry', 'hoursSlept', '2019/06/15', '2019/07/15')
-    expect(hours).to.deep.equal([6.1, 7])
+    expect(hours).to.deep.equal([7])
   })
 
   it('should return daily sleep quality between two dates', () => {
     const quality = user1.returnWeeklyValue('sleepEntry', 'sleepQuality', '2019/06/15', '2019/07/15')
-    expect(quality).to.deep.equal([2.2, 4.7])
+    expect(quality).to.deep.equal([4.7])
   })
 
   it('should return number of miles walked', () => {
@@ -134,7 +134,7 @@ describe('User', () => {
 
   it('should calculate average minutes active between two dates', () => {
     const avgMinutes = user1.calculateAverageBetweenDates('activityEntry', 'minutesActive', '2019/06/15', '2019/06/17')
-    expect(avgMinutes.toFixed(1)).to.equal('131.3')
+    expect(avgMinutes.toFixed(1)).to.equal('127.0')
   })
 
   it('should return whether the user achieved their step goal for a given date', () => {

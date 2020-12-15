@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -7,8 +7,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <link rel="stylesheet" type="text/css" href="./styles.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
   <section class="site">
@@ -17,32 +17,31 @@
       <img id="navigation--graphs" class="navigation--logo" src="../assets/graph-icon.svg" alt="Bar Graph Icon">
     </nav>
     <article class="dashboard">
-      <select class="group--list" name=""></select>
+      <label for="list" class="group--list-label">User Dropdown</label>
+      <select id="list" class="group--list" name="" ></select>
       <header class="header">
+        <article class="user--name--date">
         <h1 class="user--welcome">Welcome, Jarvis!</h1>
-        <article class="container box--xsmall">
-          <p class="date">Date</p>
-        </article>
+        <h2 class="date">Date</h2>
+      </article>
       </header>
       <section class="user--information">
         <article class="container box--small">
-          <h2 class="box--header">My Information</h2>
+          <h2 class="box--header">🗒 My Information</h2>
           <p class="user--name">Name: </p>
           <p class="user--address">Address: </p>
           <p class="user--email">Email:</p>
-          <p class="user--stride">Stride Length</p>
         </article>
         <article class="container box--small">
-          <h2 class="box--header">My Data</h2>
+          <h2 class="box--header">👟 My Steps</h2>
+          <p class="user--stride">Stride Length</p>
           <p class="user--step">Step Goal</p>
-          <p class="group--step">Average Steps for All Users</p>
-          <p class="group--stairs">Average Flights of Stairs for All Users</p>
-          <p class="group--minutes">Average Minutes Active for All Users</p>
+          <p class="group--step-goal">Average Steps for All Users</p>
         </article>
       </section>
       <section class="user--data">
         <article class="container box--large">
-          <h2 class="box--header">My Daily Summary</h2>
+          <h2 class="box--header">Previous Day Summary</h2>
           <div class="box--body">
             <section class="box--body-top">
               <h3>Steps</h3>
@@ -51,7 +50,7 @@
             </section>
             <section class="box--body-top">
               <h3>Distance</h3>
-              <img class="icon--small" src="../assets/distance-icon.svg" alt="Distance icon">
+              <img class="icon--small" src="../assets/distance-icon.svg" alt="Single step icon">
               <p id="user--daily-miles">5 miles</p>
             </section>
             <section class="box--body-bottom">
@@ -60,14 +59,29 @@
               <p id="user--daily-time">5 minutes</p>
             </section>
             <section class="box--body-bottom">
-              <h3>Floors Climbed</h3>
+              <h3>Floors</h3>
               <img class="icon--small" src="../assets/stairs-icon.svg" alt="Distance icon">
               <p id="user--daily-stairs">5 floors</p>
             </section>
+            <h2>All Users Average </h2>
+            <table>
+              <tr>
+                <td>Steps</td>
+                <td class="group--steps">""</td>
+              </tr>
+              <tr>
+                <td>Flights</td>
+                <td class="group--stairs">""</td>
+              </tr>
+              <tr>
+                <td>Minutes Active</td>
+                <td class="group--minutes">""</td>
+              </tr>
+            </table>
           </div>
         </article>
         <article class="container box--large">
-          <h2 class="box--header">Today's Sleep</h2>
+          <h2 class="box--header">Previous Day Sleep</h2>
           <!-- <h3>Today</h3> -->
           <img class="icon--large" src="../assets/sleep-icon.svg" alt="Sleep icon">
           <section class="user--data">
@@ -80,8 +94,7 @@
               <p>Quality</p>
             </div>
           </section>
-          <!-- <input type="datetime-local" name="" value=""> -->
-          <h3>Life-Time Average</h3>
+          <h2>Life-Time Average</h3>
           <section class="user--data">
             <div class="user--data-sleep">
               <p class="user--average-hours">Hrs</p>
@@ -96,13 +109,11 @@
         <section class="user--data-medium">
           <article class="container box--medium">
             <h2 class="box--header">Friends</h2>
-            <p>Clark Kent</p>
-            <p>Draco Malfoy</p>
-            <p>Diana Prince</p>
-            <p>Tony Stark</p>
+            <!-- <img class="icon--small" src="../assets/friend-icon.svg" alt="Friend Group icon"> -->
+            <table id="table--friends"></table>
           </article>
           <article class="container box--medium">
-            <h2 class="box--header">Today's Hydration</h2>
+            <h2 class="box--header">Previous Day Hydration</h2>
             <!-- <h3>Today</h3> -->
             <img class="icon--small" src="../assets/waterdrop-icon.svg" alt="Water drop icon">
             <p class="user--daily-water">Ounces</p>
@@ -112,9 +123,10 @@
     </article>
     <article class="graphs hidden">
       <div class="graph--container">
-        <canvas id="graph--hydration"></canvas>
-        <canvas id="graph--sleep"></canvas>
-        <canvas id="graph--steps"></canvas>
+        <canvas class="graph--display" id="graph--hydration"></canvas>
+        <canvas class="graph--display" id="graph--sleep"></canvas>
+        <canvas class="graph--display" id="graph--steps"></canvas>
+        <canvas class="graph--display" id="graph--stairs" style="height:300px; width:300px" ></canvas>
       </div>
     </article>
   </section>
