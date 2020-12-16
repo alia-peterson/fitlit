@@ -5,20 +5,13 @@ let ounces = []
 let hours = []
 let quality = []
 let steps = []
-let flights = [1,2,3,4,5,6,7]
+let flights = []
 let minutes = []
 
-const hydration = document.querySelector("#graph--hydration")
-const sleep = document.querySelector("#graph--sleep")
-const stepsAndMinutes = document.querySelector("#graph--steps")
-const stairFlights = document.querySelector("#graph--stairs")
-
-hydration.style.backgroundColor = 'rgb(157,181,186)'
-sleep.style.backgroundColor =  'rgb(157,181,186)'
-stepsAndMinutes.style.backgroundColor =  'rgb(157,181,186)'
-// stairFlights.style.height = '300px'
-// stairFlights.style.width = '300px'
-
+const hydration = document.querySelector('#graph--hydration')
+const sleep = document.querySelector('#graph--sleep')
+const stepsAndMinutes = document.querySelector('#graph--steps')
+const stairFlights = document.querySelector('#graph--stairs')
 
 function createGraphs() {
   const hydrationChart = new Chart(hydration, {
@@ -29,23 +22,33 @@ function createGraphs() {
         {
           data: ounces,
           label: 'Ounces',
-          borderColor: "#3e95cd",
+          borderColor: 'rgb(225,150,50)',
           fill: true,
+          backgroundColor: 'rgb(232,182,101)'
         }
       ]
     },
-
     options: {
-      scale: {
+      scales: {
         yAxes: [{
-          ticks: {
+          scaleLabel: {
+            display: true,
+            labelString: 'Ounces',
+            fontSize: 16
+          }
+        }],
+        xAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Days of the Week',
             fontSize: 16
           }
         }]
       },
       title: {
         display: true,
-        text: 'Hydration Data -- Previous Week'
+        text: 'Hydration Data',
+        fontSize: 20
       }
     }
   })
@@ -58,16 +61,39 @@ function createGraphs() {
         {
           data: hours,
           label: 'Hours',
-          backgroundColor: "#3e95cd",
+          backgroundColor: 'rgb(225,150,50)',
           fill: true
         },
         {
           data: quality,
           label: 'Quality',
-          borderColor: "#3e95cd",
-          fill: false
+          backgroundColor: 'rgb(235,202,152)',
+          fill: true
         }
       ]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Quantity',
+            fontSize: 16
+          }
+        }],
+        xAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Days of the Week',
+            fontSize: 16
+          }
+        }]
+      },
+      title: {
+        display: true,
+        text: 'Sleep Data',
+        fontSize: 20
+      }
     }
   })
 
@@ -80,27 +106,50 @@ function createGraphs() {
           type: 'line',
           data: steps,
           label: '100 Steps',
-          fill: false
+          fill: false,
+          borderColor: 'rgb(225,150,50)'
         },
         {
           data: minutes,
           label: 'Minutes',
-          borderColor: "#3e95cd",
-          fill: false
+          backgroundColor: 'rgb(235,202,152)',
+          fill: true
         }
       ]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Quantity',
+            fontSize: 16
+          }
+        }],
+        xAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Days of the Week',
+            fontSize: 16
+          }
+        }]
+      },
+      title: {
+        display: true,
+        text: 'Activity Data',
+        fontSize: 20
+      }
     }
   })
 
   const flightChart = new Chart(stairFlights, {
     type: 'doughnut',
     data: {
-      labels: [
-        'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday'
-      ],
+      labels: ['Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday'],
       datasets: [
         {
           data: flights,
+          backgroundColor: ['#E57373'],
           label: 'Flights'
         }
       ]
@@ -108,7 +157,7 @@ function createGraphs() {
     options: {
       title: {
         display: true,
-        text: 'Flights Chart'
+        text: 'Flights of Stairs Climbed'
       }
     }
   })

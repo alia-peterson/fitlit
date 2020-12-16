@@ -37,7 +37,6 @@
           <h2 class="box--header">Previous Day Activity Summary</h2>
           <div class="box--body">
             <section class="box--body-top">
-              <div class="table--circle"></div>
               <table>
                 <tr>
                   <td>Distance</td>
@@ -56,16 +55,16 @@
             <h2>All Users Average</h2>
             <table>
               <tr>
-                <td>Steps</td>
-                <td class="group--steps">""</td>
+                <td>Distance</td>
+                <td class="table--contents" id="group--steps">""</td>
               </tr>
               <tr>
-                <td>Flights</td>
-                <td class="group--stairs">""</td>
+                <td>Movement</td>
+                <td class="table--contents" id="group--minutes">""</td>
               </tr>
               <tr>
-                <td>Minutes Active</td>
-                <td class="group--minutes">""</td>
+                <td>Floors</td>
+                <td class="table--contents" id="group--stairs">""</td>
               </tr>
             </table>
           </div>
@@ -121,12 +120,21 @@
         </article>
       </aside>
       <article class="graphs hidden">
+        <header>
+          <h1>Previous Week Statistics</h1>
+        </header>
         <div class="graph--container">
-          <canvas class="graph--display" id="graph--hydration"></canvas>
-          <canvas class="graph--display" id="graph--sleep"></canvas>
-          <canvas class="graph--display" id="graph--steps"></canvas>
-          <div class="graph--circle">
-            <canvas class="graph--display" id="graph--stairs" style="height:300px; width:300px" ></canvas>
+          <div class="graph--display">
+            <canvas id="graph--hydration"></canvas>
+          </div>
+          <div class="graph--display">
+            <canvas id="graph--sleep"></canvas>
+          </div>
+          <div class="graph--display">
+            <canvas id="graph--steps"></canvas>
+          </div>
+          <div class="graph--display-donut">
+            <canvas id="graph--stairs"></canvas>
           </div>
         </div>
       </article>
