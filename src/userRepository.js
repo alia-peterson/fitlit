@@ -106,22 +106,27 @@ class UserRepository {
     return friendsWithSteps
   }
 
-  returnReducedFriendValues(friendID) {
-    const friendActivityData = activityData.filter(entry => {
+  returnReducedFriendValues(friendID, dataType = activityData) {
+    const friendActivityData = dataType.filter(entry => {
       return entry.userID === friendID
     })
 
-    const endEntry = friendActivityData.length - 1
-    const startEntry = endEntry - 7
+    const endEntry = friendActivityData.length
+    let startEntry = endEntry - 7
+
+    if (endEntry < 7) {
+      startEntry = 0
+    }
+
     const weeklyActivityData = friendActivityData.slice(startEntry, endEntry)
 
     const weeklySteps = weeklyActivityData.map(entry => entry.numSteps)
     const totalSteps = weeklySteps.reduce((acc, curr) => {
       return acc + curr
     }, 0)
+
     return totalSteps
   }
-
 }
 
 

@@ -5,11 +5,7 @@ userData = [{
   "email": "Diana.Hayes1@hotmail.com",
   "strideLength": 4.3,
   "dailyStepGoal": 10000,
-  "friends": [
-    16,
-    4,
-    8
-  ]
+  "friends": [2]
 },
 {
   "id": 2,
@@ -18,12 +14,7 @@ userData = [{
   "email": "Dimitri.Bechtelar11@gmail.com",
   "strideLength": 4.5,
   "dailyStepGoal": 5000,
-  "friends": [
-    9,
-    18,
-    24,
-    19
-  ]
+  "friends": []
 },
 {
   "id": 3,
@@ -32,12 +23,7 @@ userData = [{
   "email": "Elwin.Tromp@yahoo.com",
   "strideLength": 4.4,
   "dailyStepGoal": 5000,
-  "friends": [
-    19,
-    11,
-    42,
-    33
-  ]
+  "friends": []
 }]
 
 module.exports = {

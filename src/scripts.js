@@ -16,6 +16,7 @@ const homeIcon = document.querySelector('#navigation--home')
 const graphIcon = document.querySelector('#navigation--graphs')
 const dashboardView = document.querySelector('.dashboard')
 const graphView = document.querySelector('.graphs')
+const asideBar = document.querySelector('.aside--bar')
 const hydrationTable = document.querySelector('#table--hydration')
 const sleepTable = document.querySelector('#table--sleep')
 const userHoursSlept = document.querySelector('.user--daily-hours')
@@ -28,8 +29,6 @@ const userDailyTime = document.querySelector('#user--daily-time')
 const userDailyStairs = document.querySelector('#user--daily-stairs')
 const graphContainer = document.querySelector('.graph--container')
 const friendTable = document.querySelector('#table--friends')
-
-
 
 window.addEventListener('load', ( event ) => {
   createUserRepository()
@@ -140,6 +139,7 @@ function populateAverageStatistics(dataType, statisticType, propertyType, units)
 function toggleView() {
   dashboardView.classList.toggle('hidden')
   graphView.classList.toggle('hidden')
+  asideBar.classList.toggle('hidden')
 }
 
 function displayGraphs() {
@@ -176,7 +176,12 @@ function populateFriendData() {
 }
 
 function populateFriendTable() {
-  friendTable.innerText = ''
+  friendTable.innerHTML = `
+    <tr>
+      <th>Friend</th>
+      <th>Current Steps</th>
+    </tr>
+  `
   const friends = populateFriendData()
 
   friends.forEach(friend => {
