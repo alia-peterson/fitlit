@@ -6,9 +6,9 @@ const userEmail = document.querySelector('.user--email')
 const userStrideLength = document.querySelector('.user--stride')
 const userStepGoal = document.querySelectorAll('.user--step')
 const groupAverageStepGoal = document.querySelector('.group--step-goal')
-const groupAverageStairStat = document.querySelector('.group--stairs')
-const groupAverageStepStat = document.querySelector('.group--steps')
-const groupAverageMinutesStat = document.querySelector('.group--minutes')
+const groupAverageStairStat = document.querySelector('#group--stairs')
+const groupAverageStepStat = document.querySelector('#group--steps')
+const groupAverageMinutesStat = document.querySelector('#group--minutes')
 const groupList = document.querySelector('.group--list')
 const todaysDate = document.querySelector('.date')
 const userWater = document.querySelector('.user--daily-water')
@@ -16,6 +16,7 @@ const homeIcon = document.querySelector('#navigation--home')
 const graphIcon = document.querySelector('#navigation--graphs')
 const dashboardView = document.querySelector('.dashboard')
 const graphView = document.querySelector('.graphs')
+const asideBar = document.querySelector('.aside--bar')
 const hydrationTable = document.querySelector('#table--hydration')
 const sleepTable = document.querySelector('#table--sleep')
 const userHoursSlept = document.querySelector('.user--daily-hours')
@@ -28,8 +29,6 @@ const userDailyTime = document.querySelector('#user--daily-time')
 const userDailyStairs = document.querySelector('#user--daily-stairs')
 const graphContainer = document.querySelector('.graph--container')
 const friendTable = document.querySelector('#table--friends')
-
-
 
 window.addEventListener('load', ( event ) => {
   createUserRepository()
@@ -87,9 +86,9 @@ function populateDashboard() {
   populateAverageStatistics('sleepEntry', userAvgHoursSlept, 'hoursSlept', 'Hrs')
   populateAverageStatistics('sleepEntry', userAvgQuantitySlept, 'sleepQuality', '/ 10')
 
-  groupAverageStepStat.innerText = userRepository.returnAverageActivityData('2019/09/22', 'numSteps')
-  groupAverageStairStat.innerText = userRepository.returnAverageActivityData('2019/09/22', 'flightsOfStairs')
-  groupAverageMinutesStat.innerText = userRepository.returnAverageActivityData('2019/09/22', 'minutesActive')
+  groupAverageStepStat.innerText = userRepository.returnAverageActivityData('2019/09/22', 'numSteps', ' steps')
+  groupAverageStairStat.innerText = userRepository.returnAverageActivityData('2019/09/22', 'flightsOfStairs', ' flights')
+  groupAverageMinutesStat.innerText = userRepository.returnAverageActivityData('2019/09/22', 'minutesActive', ' minutes')
 
   userDailyMiles.innerText = `${userRepository.currentUser.returnMilesWalked('activityEntry', 'numSteps')} miles`
   populateGraphInformation()
@@ -140,6 +139,7 @@ function populateAverageStatistics(dataType, statisticType, propertyType, units)
 function toggleView() {
   dashboardView.classList.toggle('hidden')
   graphView.classList.toggle('hidden')
+  asideBar.classList.toggle('hidden')
 }
 
 function displayGraphs() {
@@ -154,6 +154,7 @@ function populateGraphInformation() {
   hours = userRepository.currentUser.returnWeeklyValue('sleepEntry', 'hoursSlept')
   quality = userRepository.currentUser.returnWeeklyValue('sleepEntry', 'sleepQuality')
   minutes = userRepository.currentUser.returnWeeklyValue('activityEntry', 'minutesActive')
+  flights = userRepository.currentUser.returnWeeklyValue('activityEntry', 'flightsOfStairs')
   steps = transformStepUnits()
   createGraphs()
 }
@@ -176,10 +177,24 @@ function populateFriendData() {
 }
 
 function populateFriendTable() {
-  friendTable.innerText = ''
-  const friends = populateFriendData()
+  friendTable.innerHTML = `
+    <tr>
+      <th>Name</th>
+      <th>Current Steps</th>
+    </tr>
+  `
+  const stepChallengers = populateFriendData()
 
-  friends.forEach(friend => {
+  const userStepInformation = {}
+  userStepInformation.name = userRepository.currentUser.name
+  userStepInformation.steps = userRepository.currentUser.returnCumulativeStepCount()
+  stepChallengers.push(userStepInformation)
+
+  stepChallengers.sort((a,b) => {
+    return b.steps - a.steps
+  })
+
+  stepChallengers.forEach(friend => {
     const tableRow = document.createElement('tr')
     const friendCell = document.createElement('td')
     const friendSteps = document.createElement('td')

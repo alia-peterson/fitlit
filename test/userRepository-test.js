@@ -113,8 +113,8 @@ describe('User Repository', () => {
 
   it('should return friend step information', () => {
     userRepository.currentUser = user1
-    const friendData = userRepository.returnWeekStepCount(['Jarvis Considine','Herminia Witting'])
-    console.log(friendData)
+    const friendData = userRepository.returnReducedFriendValues(2, activityData)
+    expect(friendData).to.equal(4294)
   })
 
 })

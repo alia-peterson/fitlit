@@ -82,6 +82,15 @@ class User {
     return activities[0].flightsOfStairs
   }
 
+  returnCumulativeStepCount() {
+    const weeklySteps = this.returnWeeklyValue('activityEntry', 'numSteps')
+    const cumulativeSteps = weeklySteps.reduce((acc, curr) => {
+      return acc + curr
+    })
+
+    return cumulativeSteps
+  }
+
 }
 
 

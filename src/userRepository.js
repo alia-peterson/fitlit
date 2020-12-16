@@ -66,7 +66,7 @@ class UserRepository {
     return bestSleepers
   }
 
-  returnAverageActivityData(day, activityType, inputData = activityData) {
+  returnAverageActivityData(day, activityType, units = '', inputData = activityData) {
     const entriesByDate = inputData.filter(entry => entry.date === day)
     const entriesByActivity = entriesByDate.map(entry => entry[activityType])
 
@@ -74,7 +74,7 @@ class UserRepository {
       return value += entry / array.length
     }, 0)
 
-    return average.toFixed(0)
+    return `${average.toFixed(0)}${units}`
   }
 
   returnWeekStepCount() {
@@ -100,28 +100,31 @@ class UserRepository {
       friendObject.steps = friendSteps[index]
       friendsWithSteps.push(friendObject)
     })
-    friendsWithSteps.sort((a,b) => {
-      return b.steps - a.steps
-    })
+
     return friendsWithSteps
   }
 
-  returnReducedFriendValues(friendID) {
-    const friendActivityData = activityData.filter(entry => {
+  returnReducedFriendValues(friendID, dataType = activityData) {
+    const friendActivityData = dataType.filter(entry => {
       return entry.userID === friendID
     })
 
-    const endEntry = friendActivityData.length - 1
-    const startEntry = endEntry - 7
+    const endEntry = friendActivityData.length
+    let startEntry = endEntry - 7
+
+    if (endEntry < 7) {
+      startEntry = 0
+    }
+
     const weeklyActivityData = friendActivityData.slice(startEntry, endEntry)
 
     const weeklySteps = weeklyActivityData.map(entry => entry.numSteps)
     const totalSteps = weeklySteps.reduce((acc, curr) => {
       return acc + curr
     }, 0)
+
     return totalSteps
   }
-
 }
 
 
