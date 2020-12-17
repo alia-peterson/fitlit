@@ -57,7 +57,7 @@ th, td {
   align-items: center;
   display: flex;
   flex-direction: column;
-  min-height: 15vh;
+  min-height: 18vh;
   justify-content: space-around;
   text-align: center;
   width: 26vw;
@@ -71,7 +71,7 @@ th, td {
   padding-bottom: 1em;
   text-align: center;
   width: 26vw;
-  min-height: 32vh;
+  min-height: 38vh;
   min-width: 140px;
 }
 
@@ -191,7 +191,7 @@ th, td {
 
 .icon--large {
   justify-content: center;
-  width: 5vw;
+  width: 10vw;
   min-width: 4em;
   margin: 0 4vw 0 4vw;
 }
@@ -315,17 +315,19 @@ text-transform: uppercase;
   }
 
   .aside--bar {
-    width: 70vw;
+    width: 90vw;
     border: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
   }
 
   #box--steps {
-    margin: 0;
+    margin: 1em;
   }
 
   .box--banner,
+  .box--small,
   .box--medium,
   .box--large {
     width: 70vw;
@@ -337,6 +339,11 @@ text-transform: uppercase;
 
   .user--data {
     flex-direction: column;
+  }
+
+  .user--data-medium {
+    margin: 0;
+
   }
 
 }
