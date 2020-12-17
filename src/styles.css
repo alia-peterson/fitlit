@@ -292,10 +292,10 @@ text-transform: uppercase;
 }
 
 @media screen and (max-width: 768px) {
-
   body {
     width: 90vw;
   }
+
   .site {
     flex-direction: column;
     display: flex;
@@ -310,14 +310,15 @@ text-transform: uppercase;
     flex-wrap: wrap;
     min-width: 50vw;
     border: 0;
-
+    justify-content: center;
   }
 
-  .navigation--button,
-  .group--list {
+  .navigation--button {
     width: 25vw;
     height: 5vh;
     margin: 0 2vw 0 2vw;
+    box-sizing: border-box;
+    padding: 0;
   }
 
   .aside--bar {
@@ -352,4 +353,13 @@ text-transform: uppercase;
 
   }
 
+  .group--list {
+    width: 60vw;
+    margin-bottom: 2vh;
+  }
+
+  .user--welcome {
+    font-size: 2em;
+    text-shadow: 2px 1px 0 #7A7A7A;
+  }
 }
