@@ -228,6 +228,7 @@ th, td {
 
 .table--contents::before {
   border: 2px solid black;
+  box-shadow: 2 2 2 2 black;
   border-radius: 50%;
   content: '';
   height: 50px;
@@ -237,7 +238,7 @@ th, td {
   transform: translate(-50%, -50%);
   width: 50px;
   z-index: -1;
-  background-color: rgb(8,11,7);
+  background-color: #DBAA69;
 }
 
 .user--average-hours,

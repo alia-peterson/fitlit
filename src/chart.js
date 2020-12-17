@@ -8,7 +8,7 @@ let steps = []
 let flights = []
 let minutes = []
 let stepProgress
-let stepsRemaining 
+let stepsRemaining
 
 const hydration = document.querySelector('#graph--hydration')
 const sleep = document.querySelector('#graph--sleep')
@@ -179,7 +179,7 @@ function createGraphs() {
       datasets: [
         {
           data: [stepProgress, stepsRemaining],
-          backgroundColor: ['#E57373', '#9575CD'],
+          backgroundColor: ['#E57373', '#26A69A'],
           label: 'Steps'
         }
       ]
