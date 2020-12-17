@@ -25,7 +25,7 @@ th {
 }
 
 th, td {
-  padding: 1em 2em 1em 1em;
+  padding: 2vh 2vw 2vh 2vw;
 }
 
 /* .table--circle {
@@ -44,7 +44,7 @@ th, td {
 
 .box--banner {
   align-items: center;
-  height: 15vh;
+  min-height: 15vh;
   text-align: left;
   display: flex;
   justify-content: space-around;
@@ -57,29 +57,31 @@ th, td {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 15vh;
+  min-height: 15vh;
   justify-content: space-around;
-  text-align: left;
+  text-align: center;
   width: 26vw;
 }
 
 .box--medium {
   align-items: center;
-  height: 32vh;
+  /* height: 32vh; */
   display: flex;
   justify-content: space-around;
   padding-bottom: 1em;
   text-align: center;
   width: 26vw;
+  min-height: 32vh;
+  min-width: 140px;
 }
 
 .box--large {
   align-items: center;
   color: #BDBDBD;
   display: flex;
-  height: 50vh;
+  min-height: 40vh;
   justify-content: space-between;
-  min-height: 500px;
+  /* min-height: 500px; */
   padding-bottom: 2em;
   text-align: center;
   width: 26vw;
@@ -94,8 +96,7 @@ th, td {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding-bottom: 8em;
-  max-width: 350px;
+  max-width: 260px;
 }
 
 .box--body-top {
@@ -190,7 +191,9 @@ th, td {
 
 .icon--large {
   justify-content: center;
-  width: 7em;
+  width: 5vw;
+  min-width: 4em;
+  margin: 0 4vw 0 4vw;
 }
 
 .icon--small {
@@ -260,7 +263,7 @@ th, td {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 54vh;
+  min-height: 54vh;
   margin-top: -10px;
 
 }
@@ -289,7 +292,51 @@ text-transform: uppercase;
 }
 
 @media screen and (max-width: 768px) {
-  .dashboard {
+  .site {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    width: 98vw;
+  }
+
+  .navigation--bar {
+    width: 100vw;
+    min-height: 10vh;
+    display: flex;
+    flex-wrap: wrap;
 
   }
+
+  .navigation--button,
+  .group--list {
+    width: 25vw;
+    height: 5vh;
+    margin: 0 2vw 0 2vw;
+  }
+
+  .aside--bar {
+    width: 70vw;
+    border: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #box--steps {
+    margin: 0;
+  }
+
+  .box--banner,
+  .box--medium,
+  .box--large {
+    width: 70vw;
+  }
+
+  .dashboard {
+    flex-wrap: wrap;
+  }
+
+  .user--data {
+    flex-direction: column;
+  }
+
 }

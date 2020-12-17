@@ -71,9 +71,9 @@
         </article>
         <section class="user--data-medium">
           <article class="container box--medium">
-            <h2 class="box--header">Previous Day Sleep</h2>
-            <img class="icon--large" src="../assets/sleep-icon.svg" alt="Sleep icon">
-            <section class="user--data">
+            <section class="box--body">
+              <h2 class="box--header">Previous Day Sleep</h2>
+              <img class="icon--large" src="../assets/sleep-icon.svg" alt="Sleep icon">
               <div class="user--data-sleep">
                 <p class="user--daily-hours">Hrs</p>
                 <p>Quantity</p>
@@ -83,69 +83,69 @@
                 <p>Quality</p>
               </div>
             </section>
-            <h2>Life-Time Average</h3>
-              <section class="user--data">
-                <div class="user--data-sleep">
-                  <p class="user--average-hours">Hrs</p>
-                  <p>Quantity</p>
-                </div>
-                <div class="user--data-sleep">
-                  <p class="user--average-quality">10/10</p>
-                  <p>Quality</p>
-                </div>
-              </section>
-            </article>
-            <article class="container box--small">
-              <h2 class="box--header">Previous Day Hydration</h2>
-              <img class="icon--small" src="../assets/waterdrop-icon.svg" alt="Water drop icon">
-              <p class="user--daily-water">Ounces</p>
-            </article>
-          </section>
+            <section class="box--body">
+              <h2>Life-Time Average</h3>
+              <div class="user--data-sleep">
+                <p class="user--average-hours">Hrs</p>
+                <p>Quantity</p>
+              </div>
+              <div class="user--data-sleep">
+                <p class="user--average-quality">10/10</p>
+                <p>Quality</p>
+              </div>
+            </section>
+          </article>
+          <article class="container box--small">
+            <h2 class="box--header">Previous Day Hydration</h2>
+            <img class="icon--small" src="../assets/waterdrop-icon.svg" alt="Water drop icon">
+            <p class="user--daily-water">Ounces</p>
+          </article>
         </section>
+      </section>
+    </article>
+    <aside class="aside--bar">
+      <article class="container box--medium" id="box--steps">
+        <h2 class="box--header">My Steps</h2>
+        <section class="box--body-top">
+          <h3>Steps</h3>
+          <img class="icon--small" src="../assets/step-icon.svg" alt="Step icon">
+          <p id="user--daily-steps">10000</p>
+        </section>
+        <p class="user--step">Step Goal</p>
+        <p class="group--step-goal">Average Steps for All Users</p>
       </article>
-      <aside class="aside--bar">
-        <article class="container box--medium" id="box--steps">
-          <h2 class="box--header">My Steps</h2>
-          <section class="box--body-top">
-            <h3>Steps</h3>
-            <img class="icon--small" src="../assets/step-icon.svg" alt="Step icon">
-            <p id="user--daily-steps">10000</p>
-          </section>
-          <p class="user--step">Step Goal</p>
-          <p class="group--step-goal">Average Steps for All Users</p>
-        </article>
-        <article class="container box--medium">
-          <h2 class="box--header">Step Challenge Leaderboard</h2>
-          <table id="table--friends"></table>
-        </article>
-      </aside>
-      <article class="graphs hidden">
-        <header>
-          <h1>Previous Week Statistics</h1>
-        </header>
-        <div class="graph--container">
-          <div class="graph--display">
-            <canvas id="graph--hydration"></canvas>
-          </div>
-          <div class="graph--display">
-            <canvas id="graph--sleep"></canvas>
-          </div>
-          <div class="graph--display">
-            <canvas id="graph--steps"></canvas>
-          </div>
-          <div class="graph--display-donut">
-            <canvas id="graph--stairs"></canvas>
-          </div>
+      <article class="container box--medium">
+        <h2 class="box--header">Step Challenge Leaderboard</h2>
+        <table id="table--friends"></table>
+      </article>
+    </aside>
+    <article class="graphs hidden">
+      <header>
+        <h1>Previous Week Statistics</h1>
+      </header>
+      <div class="graph--container">
+        <div class="graph--display">
+          <canvas id="graph--hydration"></canvas>
         </div>
-      </article>
-    </section>
-    <script type="text/javascript" src="./user.js"></script>
-    <script type="text/javascript" src="./userRepository.js"></script>
-    <script type="text/javascript" src="../data/users-data.js"></script>
-    <script type="text/javascript" src="../data/hydration-data.js"></script>
-    <script type="text/javascript" src="../data/sleep-data.js"></script>
-    <script type="text/javascript" src="../data/activity-data.js"></script>
-    <script type="text/javascript" src="./scripts.js"></script>
-    <script type="text/javascript" src="./chart.js"></script>
+        <div class="graph--display">
+          <canvas id="graph--sleep"></canvas>
+        </div>
+        <div class="graph--display">
+          <canvas id="graph--steps"></canvas>
+        </div>
+        <div class="graph--display-donut">
+          <canvas id="graph--stairs"></canvas>
+        </div>
+      </div>
+    </article>
+  </section>
+  <script type="text/javascript" src="./user.js"></script>
+  <script type="text/javascript" src="./userRepository.js"></script>
+  <script type="text/javascript" src="../data/users-data.js"></script>
+  <script type="text/javascript" src="../data/hydration-data.js"></script>
+  <script type="text/javascript" src="../data/sleep-data.js"></script>
+  <script type="text/javascript" src="../data/activity-data.js"></script>
+  <script type="text/javascript" src="./scripts.js"></script>
+  <script type="text/javascript" src="./chart.js"></script>
 </body>
 </html>
