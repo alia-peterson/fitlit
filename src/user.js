@@ -30,7 +30,7 @@ class User {
     }, 0)
   }
 
-  returnDailyValue(type, property, date) {
+  returnDailyValue(type, property, date = '2019/09/22') {
     return this[type].find(day => day.date === date)[property]
   }
 

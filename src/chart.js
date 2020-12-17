@@ -7,11 +7,14 @@ let quality = []
 let steps = []
 let flights = []
 let minutes = []
+let stepProgress
+let stepsRemaining
 
 const hydration = document.querySelector('#graph--hydration')
 const sleep = document.querySelector('#graph--sleep')
 const stepsAndMinutes = document.querySelector('#graph--steps')
 const stairFlights = document.querySelector('#graph--stairs')
+const stepGoal = document.querySelector('#graph--step-goal')
 
 function createGraphs() {
   const hydrationChart = new Chart(hydration, {
@@ -29,6 +32,7 @@ function createGraphs() {
       ]
     },
     options: {
+      maintainAspectRatio: false,
       scales: {
         yAxes: [{
           scaleLabel: {
@@ -73,6 +77,8 @@ function createGraphs() {
       ]
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       scales: {
         yAxes: [{
           scaleLabel: {
@@ -118,6 +124,8 @@ function createGraphs() {
       ]
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       scales: {
         yAxes: [{
           scaleLabel: {
@@ -149,16 +157,39 @@ function createGraphs() {
       datasets: [
         {
           data: flights,
-          backgroundColor: ['#E57373'],
+          backgroundColor: ['#E57373', '#9575CD', '#FFCA28','#BDBDBD', '#FF7043','#42A5F5', '#26A69A'],
           label: 'Flights'
         }
       ]
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       title: {
         display: true,
         text: 'Flights of Stairs Climbed'
       }
     }
   })
+
+  const goalGraph = new Chart(stepGoal, {
+    type: 'doughnut',
+    data: {
+      labels: ['Step Progress', 'Steps Remaining'],
+      datasets: [
+        {
+          data: [stepProgress, stepsRemaining],
+          backgroundColor: ['#E57373', '#26A69A'],
+          label: 'Steps'
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio:false,
+      title: {
+        display: true,
+      }
+    }
+  })
+
 }

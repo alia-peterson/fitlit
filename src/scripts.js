@@ -4,7 +4,7 @@ const userName = document.querySelector('.user--name')
 const userAddress = document.querySelector('.user--address')
 const userEmail = document.querySelector('.user--email')
 const userStrideLength = document.querySelector('.user--stride')
-const userStepGoal = document.querySelectorAll('.user--step')
+const userStepGoal = document.querySelector('.user--step')
 const groupAverageStepGoal = document.querySelector('.group--step-goal')
 const groupAverageStairStat = document.querySelector('#group--stairs')
 const groupAverageStepStat = document.querySelector('#group--steps')
@@ -12,8 +12,8 @@ const groupAverageMinutesStat = document.querySelector('#group--minutes')
 const groupList = document.querySelector('.group--list')
 const todaysDate = document.querySelector('.date')
 const userWater = document.querySelector('.user--daily-water')
-const homeIcon = document.querySelector('#navigation--home')
-const graphIcon = document.querySelector('#navigation--graphs')
+const dashboardButton = document.querySelector('#navigation--home')
+const chartsButton = document.querySelector('#navigation--graphs')
 const dashboardView = document.querySelector('.dashboard')
 const graphView = document.querySelector('.graphs')
 const asideBar = document.querySelector('.aside--bar')
@@ -23,12 +23,13 @@ const userHoursSlept = document.querySelector('.user--daily-hours')
 const userQuantitySlept = document.querySelector('.user--daily-quality')
 const userAvgHoursSlept = document.querySelector('.user--average-hours')
 const userAvgQuantitySlept = document.querySelector('.user--average-quality')
-const userDailySteps = document.querySelector('#user--daily-steps')
+// const userDailySteps = document.querySelector('#user--daily-steps')
 const userDailyMiles = document.querySelector('#user--daily-miles')
 const userDailyTime = document.querySelector('#user--daily-time')
 const userDailyStairs = document.querySelector('#user--daily-stairs')
 const graphContainer = document.querySelector('.graph--container')
 const friendTable = document.querySelector('#table--friends')
+
 
 window.addEventListener('load', ( event ) => {
   createUserRepository()
@@ -39,13 +40,14 @@ window.addEventListener('load', ( event ) => {
   populateDashboard()
 })
 
-homeIcon.addEventListener('click', ( event ) => {
+
+dashboardButton.addEventListener('click', ( event ) => {
   if (dashboardView.classList.contains("hidden")) {
     toggleView()
   }
 })
 
-graphIcon.addEventListener('click', ( event ) => {
+chartsButton.addEventListener('click', ( event ) => {
   if (graphView.classList.contains("hidden")) {
     toggleView()
     displayGraphs()
@@ -79,7 +81,6 @@ function populateDashboard() {
   populateUserStatistics('sleepEntry', userHoursSlept, 'hoursSlept', 'Hrs')
   populateUserStatistics('sleepEntry', userQuantitySlept, 'sleepQuality', '/ 10')
 
-  populateUserStatistics('activityEntry', userDailySteps, 'numSteps', '')
   populateUserStatistics('activityEntry', userDailyTime, 'minutesActive', 'minutes')
   populateUserStatistics('activityEntry', userDailyStairs, 'flightsOfStairs', 'flights')
 
@@ -94,6 +95,7 @@ function populateDashboard() {
   populateGraphInformation()
 
   populateFriendTable()
+  populateStepGoalChart()
 }
 
 function populateGroupData(type, dataList) {
@@ -112,10 +114,7 @@ function populateUserInformation() {
   userEmail.innerText = `Email: ${currentUser.email}`
   userStrideLength.innerText = `Stride Length: ${currentUser.strideLength}-ft`
   groupAverageStepGoal.innerText = `Step Goal All Users: ${userRepository.calculateAverageStepGoal()}`
-
-  userStepGoal.forEach( goal => {
-    goal.innerText = `Daily Step Goal: ${currentUser.dailyStepGoal}`
-  })
+  userStepGoal.innerText = `Daily Step Goal: ${currentUser.dailyStepGoal}`
 }
 
 function populateDate() {
@@ -179,6 +178,7 @@ function populateFriendData() {
 function populateFriendTable() {
   friendTable.innerHTML = `
     <tr>
+      <th>Rank</th>
       <th>Name</th>
       <th>Current Steps</th>
     </tr>
@@ -194,15 +194,31 @@ function populateFriendTable() {
     return b.steps - a.steps
   })
 
-  stepChallengers.forEach(friend => {
+  stepChallengers.forEach((friend, index) => {
+    const ranks = ['1st', '2nd', '3rd', '4th', '5th']
     const tableRow = document.createElement('tr')
+    const friendRank = document.createElement('td')
     const friendCell = document.createElement('td')
     const friendSteps = document.createElement('td')
 
+    friendRank.innerText = ranks[index]
     friendCell.innerText = friend.name
     friendSteps.innerText = friend.steps
 
+    friendTable.appendChild(tableRow).appendChild(friendRank)
     friendTable.appendChild(tableRow).appendChild(friendCell)
     friendTable.appendChild(tableRow).appendChild(friendSteps)
   })
+}
+
+function populateStepGoalChart() {
+  const userStepGoal = userRepository.currentUser.dailyStepGoal
+  stepProgress = userRepository.currentUser.returnDailyValue('activityEntry', 'numSteps')
+  stepsRemaining = userStepGoal - stepProgress
+
+  if (stepsRemaining < 0) {
+    stepsRemaining = 0
+  }
+
+  createGraphs()
 }
