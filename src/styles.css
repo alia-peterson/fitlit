@@ -114,6 +114,10 @@ th, td {
   padding: 0;
 }
 
+.date {
+  text-shadow: 1px 1px 0 #000000;
+}
+
 .graphs {
   display: flex;
   flex-direction: column;
@@ -203,6 +207,15 @@ th, td {
   width: 90%;
 }
 
+.navigation--button:hover {
+  cursor: pointer;
+  background-color: rgb(29,49,62);
+  -webkit-transition-duration: .5s;
+  -moz-transition-duration: .5s;
+  -o-transition-duration: .5s;
+  transition-duration: .5s;
+}
+
 .site {
   display: flex;
   height: 100%;
@@ -215,14 +228,16 @@ th, td {
 
 .table--contents::before {
   border: 2px solid black;
+  border-radius: 50%;
   content: '';
-  height: 40px;
+  height: 50px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40px;
+  width: 50px;
   z-index: -1;
+  background-color: rgb(8,11,7);
 }
 
 .user--average-hours,
@@ -251,11 +266,10 @@ th, td {
 }
 
 .user--welcome  {
-  text-shadow: 4px 3px 0 #7A7A7A;
   font-size: 3.5em;
-  font-family: 'Architects Daughter', cursive;
+  font-family: 'Pattaya', sans-serif;
   margin: 1em 0 1em 0;
-  text-transform: uppercase;
+  text-shadow: 4px 3px 0 #000000;
 }
 
 #box--steps {
@@ -337,7 +351,7 @@ th, td {
 
   .user--welcome {
     font-size: 2em;
-    text-shadow: 2px 1px 0 #7A7A7A;
+    text-shadow: 2px 1px 0 #000000;
   }
 
   #box--steps {
