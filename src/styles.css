@@ -292,18 +292,24 @@ text-transform: uppercase;
 }
 
 @media screen and (max-width: 768px) {
+
+  body {
+    width: 90vw;
+  }
   .site {
     flex-direction: column;
     display: flex;
     align-items: center;
-    width: 98vw;
+    width: 100%;
   }
 
   .navigation--bar {
-    width: 100vw;
+    width: 80vw;
     min-height: 10vh;
     display: flex;
     flex-wrap: wrap;
+    min-width: 50vw;
+    border: 0;
 
   }
 
