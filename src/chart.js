@@ -7,11 +7,14 @@ let quality = []
 let steps = []
 let flights = []
 let minutes = []
+let stepProgress
+let stepsRemaining 
 
 const hydration = document.querySelector('#graph--hydration')
 const sleep = document.querySelector('#graph--sleep')
 const stepsAndMinutes = document.querySelector('#graph--steps')
 const stairFlights = document.querySelector('#graph--stairs')
+const stepGoal = document.querySelector('#graph--step-goal')
 
 function createGraphs() {
   const hydrationChart = new Chart(hydration, {
@@ -168,4 +171,25 @@ function createGraphs() {
       }
     }
   })
+
+  const goalGraph = new Chart(stepGoal, {
+    type: 'doughnut',
+    data: {
+      labels: ['Step Progress', 'Steps Remaining'],
+      datasets: [
+        {
+          data: [stepProgress, stepsRemaining],
+          backgroundColor: ['#E57373', '#9575CD'],
+          label: 'Steps'
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio:false,
+      title: {
+        display: true,
+      }
+    }
+  })
+
 }
