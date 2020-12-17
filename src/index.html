@@ -39,6 +39,10 @@
             <section class="box--body-top">
               <table>
                 <tr>
+                  <th>Type</th>
+                  <th>Statistic</th>
+                </tr>
+                <tr>
                   <td>Distance</td>
                   <td class="table--contents" id="user--daily-miles">5 miles</td>
                 </tr>
@@ -54,6 +58,10 @@
             </section>
             <h2>All Users Average</h2>
             <table>
+              <tr>
+                <th>Type</th>
+                <th>Statistic</th>
+              </tr>
               <tr>
                 <td>Distance</td>
                 <td class="table--contents" id="group--steps">""</td>
@@ -123,7 +131,7 @@
       <header>
         <h1>Previous Week Statistics</h1>
       </header>
-      <div class="graph--container">
+      <section class="graph--container">
         <div class="graph--display">
           <canvas id="graph--hydration"></canvas>
         </div>
@@ -136,7 +144,7 @@
         <div class="graph--display-donut">
           <canvas id="graph--stairs"></canvas>
         </div>
-      </div>
+      </section>
     </article>
   </section>
   <script type="text/javascript" src="./user.js"></script>
