@@ -149,7 +149,7 @@ function createGraphs() {
       datasets: [
         {
           data: flights,
-          backgroundColor: ['#E57373'],
+          backgroundColor: ['#E57373', '#9575CD', '#FFCA28','#BDBDBD', '#FF7043','#42A5F5', '#26A69A'],
           label: 'Flights'
         }
       ]
