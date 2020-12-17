@@ -29,6 +29,7 @@ function createGraphs() {
       ]
     },
     options: {
+      maintainAspectRatio: false,
       scales: {
         yAxes: [{
           scaleLabel: {
@@ -73,6 +74,8 @@ function createGraphs() {
       ]
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       scales: {
         yAxes: [{
           scaleLabel: {
@@ -118,6 +121,8 @@ function createGraphs() {
       ]
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       scales: {
         yAxes: [{
           scaleLabel: {
@@ -155,6 +160,8 @@ function createGraphs() {
       ]
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       title: {
         display: true,
         text: 'Flights of Stairs Climbed'

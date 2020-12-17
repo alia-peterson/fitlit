@@ -101,13 +101,13 @@ describe('User Repository', () => {
 
   it('should return the average values for all users', () => {
     userRepository.populateUserData('activityEntry', activityData)
-    const average1 = userRepository.returnAverageActivityData('2019/06/15', 'numSteps', activityData)
+    const average1 = userRepository.returnAverageActivityData('2019/06/15', 'numSteps', '', activityData)
     expect(average1).to.equal('3936')
 
-    const average2 = userRepository.returnAverageActivityData('2019/06/15', 'minutesActive', activityData)
+    const average2 = userRepository.returnAverageActivityData('2019/06/15', 'minutesActive', '', activityData)
     expect(average2).to.equal('139')
 
-    const average3 = userRepository.returnAverageActivityData('2019/06/15', 'flightsOfStairs', activityData)
+    const average3 = userRepository.returnAverageActivityData('2019/06/15', 'flightsOfStairs', '', activityData)
     expect(average3).to.equal('13')
   })
 
