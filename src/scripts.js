@@ -63,10 +63,20 @@ function createUserRepository() {
 }
 
 function populateGroupList() {
-  userData.forEach( entry => {
+  const groupList = userRepository.users.map(user => user.name)
+
+  groupList.sort((a, b) => {
+    if (a < b) {
+      return -1
+    } else if (a > b) {
+      return 1
+    }
+  })
+  
+  groupList.forEach(entry => {
     const userName = document.createElement('option')
-    userName.innerText = entry.name
-    userName.value = entry.name
+    userName.innerText = entry
+    userName.value = entry
     groupListDropdown.appendChild(userName)
   })
 }
@@ -195,7 +205,7 @@ function populateFriendTable() {
   userStepInformation.steps = userRepository.currentUser.returnCumulativeStepCount()
   stepChallengers.push(userStepInformation)
 
-  stepChallengers.sort((a,b) => {
+  stepChallengers.sort((a, b) => {
     return b.steps - a.steps
   })
 
