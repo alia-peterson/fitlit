@@ -5,33 +5,29 @@ const userAddress = document.querySelector('.user--address')
 const userEmail = document.querySelector('.user--email')
 const userStrideLength = document.querySelector('.user--stride')
 const userStepGoal = document.querySelector('.user--step')
+const userDailyHydration = document.querySelector('.user--daily-water')
+const userHoursSlept = document.querySelector('.user--daily-hours')
+const userQuantitySlept = document.querySelector('.user--daily-quality')
+const userAvgHoursSlept = document.querySelector('.user--average-hours')
+const userAvgQuantitySlept = document.querySelector('.user--average-quality')
+const userDailyMiles = document.querySelector('#user--daily-miles')
+const userDailyTime = document.querySelector('#user--daily-time')
+const userDailyStairs = document.querySelector('#user--daily-stairs')
 const groupAverageStepGoal = document.querySelector('.group--step-goal')
 const groupAverageStairStat = document.querySelector('#group--stairs')
 const groupAverageStepStat = document.querySelector('#group--steps')
 const groupAverageMinutesStat = document.querySelector('#group--minutes')
-const groupList = document.querySelector('.group--list')
+const groupListDropdown = document.querySelector('.group--list')
 const todaysDate = document.querySelector('.date')
-const userWater = document.querySelector('.user--daily-water')
 const dashboardButton = document.querySelector('#navigation--home')
 const chartsButton = document.querySelector('#navigation--graphs')
 const dashboardView = document.querySelector('.dashboard')
 const graphView = document.querySelector('.graphs')
 const asideBar = document.querySelector('.aside--bar')
-const hydrationTable = document.querySelector('#table--hydration')
-const sleepTable = document.querySelector('#table--sleep')
-const userHoursSlept = document.querySelector('.user--daily-hours')
-const userQuantitySlept = document.querySelector('.user--daily-quality')
-const userAvgHoursSlept = document.querySelector('.user--average-hours')
-const userAvgQuantitySlept = document.querySelector('.user--average-quality')
-// const userDailySteps = document.querySelector('#user--daily-steps')
-const userDailyMiles = document.querySelector('#user--daily-miles')
-const userDailyTime = document.querySelector('#user--daily-time')
-const userDailyStairs = document.querySelector('#user--daily-stairs')
-const graphContainer = document.querySelector('.graph--container')
 const friendTable = document.querySelector('#table--friends')
+const stepGoalMessage = document.querySelector('#message--steps')
 
-
-window.addEventListener('load', ( event ) => {
+window.addEventListener('load', (event) => {
   createUserRepository()
   populateGroupList()
   populateGroupData('hydrationEntry', hydrationData)
@@ -41,43 +37,44 @@ window.addEventListener('load', ( event ) => {
 })
 
 
-dashboardButton.addEventListener('click', ( event ) => {
+dashboardButton.addEventListener('click', (event) => {
   if (dashboardView.classList.contains("hidden")) {
     toggleView()
+    createGraphs()
   }
 })
 
-chartsButton.addEventListener('click', ( event ) => {
+chartsButton.addEventListener('click', (event) => {
   if (graphView.classList.contains("hidden")) {
     toggleView()
-    displayGraphs()
+    createGraphs()
   }
 })
 
-groupList.addEventListener('change', ( event ) => {
+groupListDropdown.addEventListener('change', (event) => {
   populateDashboard()
 })
 
 function createUserRepository() {
-  userData.forEach( entry => {
-    const user = new User( entry )
-    userRepository.users.push( user )
+  userData.forEach(entry => {
+    const user = new User(entry)
+    userRepository.users.push(user)
   })
 }
 
 function populateGroupList() {
   userData.forEach( entry => {
-    const userName = document.createElement( 'option' )
+    const userName = document.createElement('option')
     userName.innerText = entry.name
     userName.value = entry.name
-    groupList.appendChild( userName )
+    groupListDropdown.appendChild(userName)
   })
 }
 
 function populateDashboard() {
   populateUserInformation()
   populateDate()
-  populateUserStatistics('hydrationEntry', userWater, 'numOunces', 'oz')
+  populateUserStatistics('hydrationEntry', userDailyHydration, 'numOunces', 'oz')
   populateUserStatistics('sleepEntry', userHoursSlept, 'hoursSlept', 'Hrs')
   populateUserStatistics('sleepEntry', userQuantitySlept, 'sleepQuality', '/ 10')
 
@@ -87,24 +84,24 @@ function populateDashboard() {
   populateAverageStatistics('sleepEntry', userAvgHoursSlept, 'hoursSlept', 'Hrs')
   populateAverageStatistics('sleepEntry', userAvgQuantitySlept, 'sleepQuality', '/ 10')
 
-  groupAverageStepStat.innerText = userRepository.returnAverageActivityData('2019/09/22', 'numSteps', ' steps')
-  groupAverageStairStat.innerText = userRepository.returnAverageActivityData('2019/09/22', 'flightsOfStairs', ' flights')
-  groupAverageMinutesStat.innerText = userRepository.returnAverageActivityData('2019/09/22', 'minutesActive', ' minutes')
+  groupAverageStepStat.innerText = userRepository.returnAverageActivityData('numSteps', ' steps')
+  groupAverageStairStat.innerText = userRepository.returnAverageActivityData('flightsOfStairs', ' flights')
+  groupAverageMinutesStat.innerText = userRepository.returnAverageActivityData('minutesActive', ' minutes')
 
-  userDailyMiles.innerText = `${userRepository.currentUser.returnMilesWalked('activityEntry', 'numSteps')} miles`
+  const user = userRepository.currentUser
+  userDailyMiles.innerText = `${user.returnMilesWalked('activityEntry', 'numSteps')} miles`
   populateGraphInformation()
 
   populateFriendTable()
-  populateStepGoalChart()
 }
 
-function populateGroupData(type, dataList) {
-  userRepository.populateUserData(type, dataList)
+function populateGroupData(entryType, dataList) {
+  userRepository.populateUserData(entryType, dataList)
 }
 
 function populateUserInformation() {
-  userRepository.currentUser = userRepository.users.find( user => {
-    return user.name === groupList.value
+  userRepository.currentUser = userRepository.users.find(user => {
+    return user.name === groupListDropdown.value
   })
 
   const currentUser = userRepository.currentUser
@@ -119,7 +116,7 @@ function populateUserInformation() {
 
 function populateDate() {
   const timeElapsed = Date.now()
-  const today = new Date( timeElapsed )
+  const today = new Date(timeElapsed)
 
   todaysDate.innerText = today.toDateString()
 }
@@ -141,13 +138,6 @@ function toggleView() {
   asideBar.classList.toggle('hidden')
 }
 
-function displayGraphs() {
-  const graph = document.createElement('canvas')
-  graph.id = 'graph--display'
-  graph.display = false
-  graphContainer.appendChild(graph)
-}
-
 function populateGraphInformation() {
   ounces = userRepository.currentUser.returnWeeklyValue('hydrationEntry', 'numOunces')
   hours = userRepository.currentUser.returnWeeklyValue('sleepEntry', 'hoursSlept')
@@ -155,7 +145,20 @@ function populateGraphInformation() {
   minutes = userRepository.currentUser.returnWeeklyValue('activityEntry', 'minutesActive')
   flights = userRepository.currentUser.returnWeeklyValue('activityEntry', 'flightsOfStairs')
   steps = transformStepUnits()
+
+  populateStepGoalChart()
   createGraphs()
+}
+
+function populateStepGoalChart() {
+  const userStepGoal = userRepository.currentUser.dailyStepGoal
+  stepProgress = userRepository.currentUser.returnDailyValue('activityEntry', 'numSteps')
+  stepsRemaining = userStepGoal - stepProgress
+
+  if (stepsRemaining < 0) {
+    stepsRemaining = 0
+    stepGoalMessage.innerText = '🎉 You Exceeded Your Step Goal 🎉'
+  }
 }
 
 function transformStepUnits() {
@@ -167,10 +170,12 @@ function transformStepUnits() {
 
 function populateFriendData() {
   const friends = []
+
   userRepository.currentUser.friends.forEach((friend, index) => {
     const user = new User(userData[index])
     friends.push(user)
   })
+
   const friendNames = friends.map(friend => friend.name)
   return userRepository.returnWeekStepCount(friendNames)
 }
@@ -194,8 +199,12 @@ function populateFriendTable() {
     return b.steps - a.steps
   })
 
-  stepChallengers.forEach((friend, index) => {
-    const ranks = ['1st', '2nd', '3rd', '4th', '5th']
+  createTableElements(stepChallengers)
+}
+
+function createTableElements(inputArray) {
+  inputArray.forEach((friend, index) => {
+    const ranks = ['1st 🏆', '2nd🥈', '3rd🥉', '4th🎗', '5th🎗', '6th🎗']
     const tableRow = document.createElement('tr')
     const friendRank = document.createElement('td')
     const friendCell = document.createElement('td')
@@ -209,16 +218,4 @@ function populateFriendTable() {
     friendTable.appendChild(tableRow).appendChild(friendCell)
     friendTable.appendChild(tableRow).appendChild(friendSteps)
   })
-}
-
-function populateStepGoalChart() {
-  const userStepGoal = userRepository.currentUser.dailyStepGoal
-  stepProgress = userRepository.currentUser.returnDailyValue('activityEntry', 'numSteps')
-  stepsRemaining = userStepGoal - stepProgress
-
-  if (stepsRemaining < 0) {
-    stepsRemaining = 0
-  }
-
-  createGraphs()
 }
