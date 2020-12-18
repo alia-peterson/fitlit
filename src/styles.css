@@ -112,6 +112,7 @@ th, td {
 }
 
 .date {
+  color: #FFFFFF;
   text-shadow: 1px 1px 0 #000000;
 }
 
@@ -266,6 +267,7 @@ th, td {
 }
 
 .user--welcome  {
+  color: #FFFFFF;
   font-size: 3.5em;
   font-family: 'Pattaya', sans-serif;
   margin: 1em 0 1em 0;
