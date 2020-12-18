@@ -27,12 +27,12 @@ The charts page offers graphical representation of user statistics  from the pre
 ### Goals
 
 ``` Markdown
-_ Implement ES6 classes that communicate to each other as needed
+
+- Implement ES6 classes that communicate to each other as needed
 - Use object and array prototype methods to perform data manipulation
 - Create a dashboard that is easy to use and displays information in a clear way on multiple screens
 - Write modular, reusable code that follows SRP (Single Responsibility Principle)
 - Implement a robust testing suite using TDD
-
 
 ```
 
@@ -81,14 +81,15 @@ _ Implement ES6 classes that communicate to each other as needed
 
  ## Challenges  
 
- +
+ + Utilizing Chart.js proved to be a challenge but the final product was worth the struggle
 
 
 
 ---
  ## Wins
 
-  +
+  + Learning how to implement Chart.js
+  + Building a product that utilizes multiple users and accompanying data
 
 
 
