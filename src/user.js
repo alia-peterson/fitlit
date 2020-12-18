@@ -7,9 +7,6 @@ class User {
     this.strideLength = userData.strideLength
     this.dailyStepGoal = userData.dailyStepGoal
     this.friends = userData.friends
-    // this.activityEntry = []
-    // this.sleepEntry = []
-    // this.hydrationEntry = []
   }
 
   returnFirstName() {
@@ -17,46 +14,49 @@ class User {
   	return fullName[0]
   }
 
-  calculateLifetimeAverage(type, property) {
-    return this[type].reduce((value, day) => {
-      return value += day[property] / this[type].length
+  // entryType = 'activityEntry' or 'sleepEntry' or 'hydrationEntry'
+  // entryProperty = 'numSteps' or 'numOunces' or 'flightsOfStairs' etc
+  calculateLifetimeAverage(entryType, entryProperty) {
+    return this[entryType].reduce((value, day) => {
+      return value += day[entryProperty] / this[entryType].length
     }, 0)
   }
 
-  calculateAverageBetweenDates(type, property, startDate, endDate) {
-    const reducedEntries = this.returnReducedEntries(type, startDate, endDate)
+  calculateAverageBetweenDates(entryType, entryProperty, startDate = "2019/09/15", endDate = "2019/09/22") {
+    const reducedEntries = this.returnReducedEntries(entryType, startDate, endDate)
+
     return reducedEntries.reduce((value, day) => {
-      return value += day[property] / reducedEntries.length
+      return value += day[entryProperty] / reducedEntries.length
     }, 0)
   }
 
-  returnDailyValue(type, property, date = '2019/09/22') {
-    return this[type].find(day => day.date === date)[property]
+  returnDailyValue(entryType, entryProperty, date = '2019/09/22') {
+    return this[entryType].find(day => day.date === date)[entryProperty]
   }
 
-  returnWeeklyValue(type, property, startDate = "2019/09/15", endDate = "2019/09/22") {
-    const reducedEntries = this.returnReducedEntries(type, startDate, endDate)
-    return reducedEntries.map(entry => entry[property])
+  returnWeeklyValue(entryType, entryProperty, startDate = "2019/09/15", endDate = "2019/09/22") {
+    const reducedEntries = this.returnReducedEntries(entryType, startDate, endDate)
+    return reducedEntries.map(entry => entry[entryProperty])
   }
 
-  returnMilesWalked(type, property, date = "2019/09/22") {
-    const numberSteps = this.returnDailyValue(type, property, date)
+  returnMilesWalked(entryType, entryProperty, date = "2019/09/22") {
+    const numberSteps = this.returnDailyValue(entryType, entryProperty, date)
     return (numberSteps * this.strideLength / 5280).toFixed(2)
   }
 
-  returnReducedEntries(type, startDate, endDate) {
-    const startEntry = this[type].find(entry => entry.date === startDate)
-    const startIndex = this[type].indexOf(startEntry) + 1
+  returnReducedEntries(entryType, startDate, endDate) {
+    const startEntry = this[entryType].find(entry => entry.date === startDate)
+    const startIndex = this[entryType].indexOf(startEntry) + 1
 
-    const endEntry = this[type].find(entry => entry.date === endDate)
-    const endIndex = this[type].indexOf(endEntry) + 1
+    const endEntry = this[entryType].find(entry => entry.date === endDate)
+    const endIndex = this[entryType].indexOf(endEntry) + 1
 
-    const reducedEntries = this[type].slice(startIndex, endIndex)
+    const reducedEntries = this[entryType].slice(startIndex, endIndex)
     return reducedEntries
   }
 
-  returnAchievedStepGoal(day) {
-    const dateOfActivity = this.activityEntry.find(entry => entry.date === day)
+  returnAchievedStepGoal(inputDate) {
+    const dateOfActivity = this.activityEntry.find(entry => entry.date === inputDate)
 
     if (dateOfActivity.numSteps >= this.dailyStepGoal) {
       return true
@@ -84,13 +84,13 @@ class User {
 
   returnCumulativeStepCount() {
     const weeklySteps = this.returnWeeklyValue('activityEntry', 'numSteps')
+
     const cumulativeSteps = weeklySteps.reduce((acc, curr) => {
       return acc + curr
     })
 
     return cumulativeSteps
   }
-
 }
 
 

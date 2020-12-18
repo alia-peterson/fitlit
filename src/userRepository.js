@@ -32,33 +32,29 @@ class UserRepository {
     return qualityAboveThree
   }
 
-  populateUserData(type, dataList) {
+  // entryType = 'activityEntry' or 'sleepEntry' or 'hydrationEntry'
+  // dataList = activityData, sleepData, or hydrationData
+  populateUserData(entryType, dataList) {
     this.users.forEach(user => {
-      user[type] = dataList.filter(entry => {
+      user[entryType] = dataList.filter(entry => {
         return entry.userID === user.id
       })
     })
   }
 
   returnBestSleepers(inputDate, inputData = sleepData) {
-    // finds entries from sleepData that have the same date as our input
     const sleepDataForDate = inputData.filter(entry => entry.date === inputDate)
 
-    // moves the entry with the highest sleep value to index 0
     const sortedSleepData = sleepDataForDate.sort((a, b) => {
       return b.hoursSlept - a.hoursSlept
     })
 
-    // return the sleep entries that have an hoursSlept equal to
-    // the highest sleep value in our sorted array
     const highestSleepEntries = sortedSleepData.filter(entry => {
       return entry.hoursSlept === sortedSleepData[0].hoursSlept
     })
 
     const bestSleepers = []
 
-    // iterating through our array of highestSleepEntries
-    // finding the users in our this.users array with the relevant IDs
     for (var i = 0; i < highestSleepEntries.length; i++) {
       bestSleepers.push(this.users[highestSleepEntries[i].userID - 1])
     }
@@ -66,8 +62,9 @@ class UserRepository {
     return bestSleepers
   }
 
-  returnAverageActivityData(day, activityType, units = '', inputData = activityData) {
-    const entriesByDate = inputData.filter(entry => entry.date === day)
+  returnAverageActivityData(activityType, units = '', inputDate = '2019/09/22', inputData = activityData) {
+    const entriesByDate = inputData.filter(entry => entry.date === inputDate)
+
     const entriesByActivity = entriesByDate.map(entry => entry[activityType])
 
     const average = entriesByActivity.reduce((value, entry, index, array) => {
@@ -79,6 +76,7 @@ class UserRepository {
 
   returnWeekStepCount() {
     const friends = this.currentUser.friends
+
     const friendStepValues = friends.map(friend => {
       return friend.returnReducedFriendValues
     })
@@ -89,14 +87,14 @@ class UserRepository {
     })
 
     const friendNames = []
-    friends.forEach(friend => {
-      friendNames.push(this.users[friend - 1].name)
+    friends.forEach(friendID => {
+      friendNames.push(this.users[friendID - 1].name)
     })
 
     const friendsWithSteps = []
-    friendNames.forEach((friend, index) => {
+    friendNames.forEach((friendName, index) => {
       const friendObject = {}
-      friendObject.name = friend
+      friendObject.name = friendName
       friendObject.steps = friendSteps[index]
       friendsWithSteps.push(friendObject)
     })
@@ -112,13 +110,14 @@ class UserRepository {
     const endEntry = friendActivityData.length
     let startEntry = endEntry - 7
 
-    if (endEntry < 7) {
+    if (startEntry < 0) {
       startEntry = 0
     }
 
     const weeklyActivityData = friendActivityData.slice(startEntry, endEntry)
 
     const weeklySteps = weeklyActivityData.map(entry => entry.numSteps)
+
     const totalSteps = weeklySteps.reduce((acc, curr) => {
       return acc + curr
     }, 0)
@@ -131,5 +130,5 @@ class UserRepository {
 
 
 if (typeof module !== 'undefined') {
-  module.exports = UserRepository;
+  module.exports = UserRepository
 }

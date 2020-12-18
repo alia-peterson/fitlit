@@ -1,6 +1,5 @@
-// Our labels along the x-axis
 const weekdays = ['Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday']
-// For drawing the lines
+
 let ounces = []
 let hours = []
 let quality = []
@@ -16,8 +15,20 @@ const stepsAndMinutes = document.querySelector('#graph--steps')
 const stairFlights = document.querySelector('#graph--stairs')
 const stepGoal = document.querySelector('#graph--step-goal')
 
+let hydrationChart = new Chart(hydration, {})
+let sleepChart = new Chart(sleep, {})
+let stepsAndMinutesChart = new Chart(stepsAndMinutes, {})
+let flightChart = new Chart(stairFlights, {})
+let stepGoalChart = new Chart(stepGoal, {})
+
 function createGraphs() {
-  const hydrationChart = new Chart(hydration, {
+  hydrationChart.destroy()
+  sleepChart.destroy()
+  stepsAndMinutesChart.destroy()
+  flightChart.destroy()
+  stepGoalChart.destroy()
+
+  hydrationChart = new Chart(hydration, {
     type: 'line',
     data: {
       labels: weekdays,
@@ -33,31 +44,45 @@ function createGraphs() {
     },
     options: {
       maintainAspectRatio: false,
+      legend: {
+        labels: {
+          fontColor: '#BDBDBD'
+        }
+      },
       scales: {
         yAxes: [{
+          ticks: {
+            fontColor: '#BDBDBD',
+          },
           scaleLabel: {
             display: true,
             labelString: 'Ounces',
-            fontSize: 16
+            fontSize: 16,
+            fontColor: '#BDBDBD'
           }
         }],
         xAxes: [{
+          ticks: {
+            fontColor: '#BDBDBD',
+          },
           scaleLabel: {
             display: true,
             labelString: 'Days of the Week',
-            fontSize: 16
+            fontSize: 16,
+            fontColor: '#BDBDBD'
           }
         }]
       },
       title: {
         display: true,
         text: 'Hydration Data',
-        fontSize: 20
+        fontSize: 20,
+        fontColor: '#BDBDBD'
       }
     }
   })
 
-  const sleepChart = new Chart(sleep, {
+  sleepChart = new Chart(sleep, {
     type: 'bar',
     data: {
       labels: weekdays,
@@ -77,33 +102,46 @@ function createGraphs() {
       ]
     },
     options: {
-      responsive: true,
       maintainAspectRatio: false,
+      legend: {
+        labels: {
+          fontColor: '#BDBDBD'
+        }
+      },
       scales: {
         yAxes: [{
+          ticks: {
+            fontColor: '#BDBDBD',
+          },
           scaleLabel: {
             display: true,
             labelString: 'Quantity',
-            fontSize: 16
+            fontSize: 16,
+            fontColor: '#BDBDBD'
           }
         }],
         xAxes: [{
+          ticks: {
+            fontColor: '#BDBDBD',
+          },
           scaleLabel: {
             display: true,
             labelString: 'Days of the Week',
-            fontSize: 16
+            fontSize: 16,
+            fontColor: '#BDBDBD'
           }
         }]
       },
       title: {
         display: true,
         text: 'Sleep Data',
-        fontSize: 20
+        fontSize: 20,
+        fontColor: '#BDBDBD'
       }
     }
   })
 
-  const stepsAndMinutesChart = new Chart(stepsAndMinutes, {
+  stepsAndMinutesChart = new Chart(stepsAndMinutes, {
     type: 'bar',
     data: {
       labels: weekdays,
@@ -124,33 +162,46 @@ function createGraphs() {
       ]
     },
     options: {
-      responsive: true,
       maintainAspectRatio: false,
+      legend: {
+        labels: {
+          fontColor: '#BDBDBD'
+        }
+      },
       scales: {
         yAxes: [{
+          ticks: {
+            fontColor: '#BDBDBD',
+          },
           scaleLabel: {
             display: true,
             labelString: 'Quantity',
-            fontSize: 16
+            fontSize: 16,
+            fontColor: '#BDBDBD'
           }
         }],
         xAxes: [{
+          ticks: {
+            fontColor: '#BDBDBD',
+          },
           scaleLabel: {
             display: true,
             labelString: 'Days of the Week',
-            fontSize: 16
+            fontSize: 16,
+            fontColor: '#BDBDBD'
           }
         }]
       },
       title: {
         display: true,
         text: 'Activity Data',
-        fontSize: 20
+        fontSize: 20,
+        fontColor: '#BDBDBD'
       }
     }
   })
 
-  const flightChart = new Chart(stairFlights, {
+  flightChart = new Chart(stairFlights, {
     type: 'doughnut',
     data: {
       labels: ['Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday'],
@@ -163,31 +214,39 @@ function createGraphs() {
       ]
     },
     options: {
-      responsive: true,
       maintainAspectRatio: false,
+      legend: {
+        labels: {
+          fontColor: '#BDBDBD'
+        }
+      },
       title: {
         display: true,
-        text: 'Flights of Stairs Climbed'
+        text: 'Flights of Stairs Climbed',
+        fontSize: 20,
+        fontColor: '#BDBDBD'
       }
     }
   })
 
-  const goalGraph = new Chart(stepGoal, {
+  stepGoalChart = new Chart(stepGoal, {
     type: 'doughnut',
     data: {
       labels: ['Step Progress', 'Steps Remaining'],
       datasets: [
         {
           data: [stepProgress, stepsRemaining],
-          backgroundColor: ['#E57373', '#26A69A'],
+          backgroundColor: ['rgb(225,150,50)', 'rgb(235,202,152)'],
           label: 'Steps'
         }
       ]
     },
     options: {
-      maintainAspectRatio:false,
-      title: {
-        display: true,
+      maintainAspectRatio: false,
+      legend: {
+        labels: {
+          fontColor: '#BDBDBD'
+        }
       }
     }
   })

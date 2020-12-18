@@ -13,8 +13,6 @@ body, html {
 p {
   margin: 0;
   text-align: center;
-  color: #BDBDBD;
-  font-family: 'Montserrat', sans-serif;
 }
 
 th {
@@ -22,7 +20,7 @@ th {
 }
 
 th, td {
-  padding: 2vh 2vw 2vh 2vw;
+  padding: 2vh 1vw 2vh 1vw;
 }
 
 .aside--bar {
@@ -32,12 +30,12 @@ th, td {
 
 .box--banner {
   align-items: center;
-  min-height: 15vh;
-  text-align: left;
+  color: #BDBDBD;
   display: flex;
   justify-content: space-around;
-  color: #BDBDBD;
+  min-height: 15vh;
   padding-bottom: 1em;
+  text-align: left;
   width: 45vw;
 }
 
@@ -45,8 +43,8 @@ th, td {
   align-items: center;
   display: flex;
   flex-direction: column;
-  min-height: 18vh;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  min-height: 28vh;
   text-align: center;
   width: 26vw;
 }
@@ -55,11 +53,10 @@ th, td {
   align-items: center;
   display: flex;
   justify-content: space-around;
+  min-height: 38vh;
   padding-bottom: 1em;
   text-align: center;
   width: 26vw;
-  min-height: 38vh;
-  min-width: 140px;
 }
 
 .box--large {
@@ -127,35 +124,42 @@ th, td {
   align-items: center;
   display: flex;
   flex-direction: column;
-  width: 90vw;
+  width: 80vw;
 }
 
 .graph--display {
   background-color: rgb(35,56,70);
+  height: 45vh;
   margin: 5vh;
   opacity: 0.95;
   padding: 1em;
-  width: 70vw;
-  height: 45vh;
+  width: 90%;
 }
 
 .graph--display-donut {
   background-color: rgb(35,56,70);
   margin: 5vh;
+  min-height: 30vh;
   opacity: 0.95;
   padding: 1em 15vw 1em 15vw;
   width: 45vw;
 }
 
-.group--list  {
-  padding-top: 0%;
-  padding-bottom: 0%;
-  width: auto;
+.graph--display-steps {
   height: auto;
-  margin-bottom: 10vh;
+  max-width: 420px;
+  width: 25vw;
+}
+
+.group--list  {
   border-radius: 1px;
   font-size: 16px;
   font-family: 'Montserrat', sans-serif;
+  height: auto;
+  margin-bottom: 10vh;
+  padding-top: 0%;
+  padding-bottom: 0%;
+  width: auto;
 }
 
 .group--list-label {
@@ -175,25 +179,24 @@ th, td {
 
 .icon--large {
   justify-content: center;
-  width: 10vw;
-  min-width: 4em;
   margin: 0 4vw 0 4vw;
+  min-width: 4em;
+  width: 10vw;
 }
 
 .icon--small {
-  width: 3.5em;
   padding: 0 2em 0 2em;
+  width: 3.5em;
 }
 
 .navigation--bar {
   border-right: 2px solid rgb(35,56,70);
-  border-radius: 0.25em;
   display: block;
-  margin-left: 0;
-  padding-left: 0;
-  min-width: 188px;
-  padding-top: 80px;
+  margin: 0;
   min-height: 100vh;
+  min-width: 188px;
+  padding: 0;
+  padding-top: 80px;
   width: 20vw;
 }
 
@@ -210,10 +213,10 @@ th, td {
 .navigation--button:hover {
   cursor: pointer;
   background-color: rgb(29,49,62);
+  transition-duration: .5s;
   -webkit-transition-duration: .5s;
   -moz-transition-duration: .5s;
   -o-transition-duration: .5s;
-  transition-duration: .5s;
 }
 
 .site {
@@ -227,18 +230,14 @@ th, td {
 }
 
 .table--contents::before {
-  border: 2px solid black;
-  box-shadow: 2 2 2 2 black;
-  border-radius: 50%;
-  content: '';
-  height: 50px;
-  position: absolute;
-  top: 50%;
+  content: '◉';
+  color: #000000;
+  font-size: 3em;
   left: 50%;
+  top: 50%;
+  position: absolute;
   transform: translate(-50%, -50%);
-  width: 50px;
   z-index: -1;
-  background-color: #DBAA69;
 }
 
 .user--average-hours,
@@ -257,9 +256,9 @@ th, td {
 .user--data-medium {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  min-height: 54vh;
-  margin-top: -10px;
+  justify-content: space-between;
+  min-height: 56vh;
+  margin-top: 0px;
 }
 
 .user--data-sleep {
@@ -274,72 +273,72 @@ th, td {
 }
 
 #box--steps {
-  margin-top: 19vh;
+  margin-top: 26vh;
   margin-bottom: 4vh;
 }
 
-@media screen and (max-width: 425px) {
-  .graph--display {
-    height: 30vh;
-  }
-
-  .graphs {
-    align-content: center;
-  }
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   body {
     width: 90vw;
   }
 
   .aside--bar {
-    width: 90vw;
+    align-items: center;
     border: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 90vw;
   }
 
   .box--banner,
   .box--small,
   .box--medium,
   .box--large {
-    width: 59vw;
+    width: 70vw;
   }
 
   .dashboard {
     flex-wrap: wrap;
   }
 
+  .graph--display-donut {
+    padding: 1em 16vw 1em 16vw;
+  }
+
+  .graph--display-steps {
+    height: auto;
+    max-width: 200px;
+    width: 50vw;
+  }
+
   .group--list {
-    width: 60vw;
     margin-bottom: 2vh;
+    width: 60vw;
   }
 
   .navigation--bar {
-    width: 80vw;
-    min-height: 10vh;
+    border: 0;
     display: flex;
     flex-wrap: wrap;
-    min-width: 50vw;
-    border: 0;
     justify-content: center;
+    min-height: 10vh;
+    min-width: 50vw;
+    width: 80vw;
   }
 
   .navigation--button {
-    width: 25vw;
+    box-sizing: border-box;
     height: 5vh;
     margin: 0 2vw 0 2vw;
-    box-sizing: border-box;
     padding: 0;
+    width: 25vw;
   }
 
   .site {
-    flex-direction: column;
-    display: flex;
     align-items: center;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 98vw;
   }
 
   .user--data {
@@ -357,5 +356,26 @@ th, td {
 
   #box--steps {
     margin: 1em;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .graph--display {
+    height: 30vh;
+    margin: 1vh 0 1vh 0;
+  }
+
+  .graph--display-donut {
+    margin: 1vh 0 1vh 0;
+    padding: 1em;
+    width: 90%;
+  }
+
+  .graphs {
+    align-content: center;
+  }
+
+  .site {
+    width: 96vw;
   }
 }
