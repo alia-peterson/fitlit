@@ -1,81 +1,97 @@
-# FitLit Starter Kit
 
-The details of this project are outline in [this project spec](http://frontend.turing.io/projects/fitlit.html).
-## Setup
 
-1. Within your group, decide on one person to have the project repository (repo) on their GitHub account. Then, that person should fork this repo - on the top right corner of this page, click the **Fork** button.
-1. Both memebers of the group should clone down the _forked_ repo. Since you don't want to name your project "activity-tracker-starter", you can use an optional argument when you run git clone (you replace the [...] with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
-1. Run `open src/index.html` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-1. Make sure both members of your team are collaborators on the forked repo.
+#  Fit Lit
+> A Front-End Project by  [Alia Peterson](https://github.com/alia-peterson)  & [Ben Prat](https://github.com/benjaminprat)
 
-## Testing
+> [Link To Deployed Webpage](https://alia-peterson.github.io/fitlit/src/index.html)
 
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran `npm install`, then the tooling you need to start testing is already installed (`mocha` and `chai`).
+## Contents
+1. [Overview and Goals](#overview)
+1. [ Installation & Technologies](#installation)
+1. [Desktop View](#desktop)
+1. [Charts Page](#charts)
+1. [Mobile View](#mobile)
 
-## Linting Your Code
 
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
+## Overview and Goals
+We are Mod 2 students at the Turing School of Software and Design. In this project we were tasked to build an application displaying information about multiple users in a meaningful way.
 
-Your linter will look only at the JavaScript files you have within the `src` and the `test` directories.
+Fit Lit tracks user health and fitness information for a given week  and can display the information across multiple screens.  
 
-## Data Model
+Data such as daily hydration consumption, step goals and minutes active are displayed on the dashboard. The dashboard also displays the averages for the user's friends for a given day.
 
-**Users**
+The charts page offers graphical representation of user statistics  from the previous week.
 
-```
-[
-  {
-    "id": [number],
-    "name": [string],
-    "address": [string],
-    "email": [string],
-    "strideLength": [number - feet],
-    "dailyStepGoal": [number - steps],
-    "friends": [array - one-way connection to other user(s)]
-  },
-  ...more user data
-]
-```
 
-**Activity**
+
+### Goals
+
+``` Markdown
+_ Implement ES6 classes that communicate to each other as needed
+- Use object and array prototype methods to perform data manipulation
+- Create a dashboard that is easy to use and displays information in a clear way on multiple screens
+- Write modular, reusable code that follows SRP (Single Responsibility Principle)
+- Implement a robust testing suite using TDD
+
 
 ```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numSteps": [number - steps],
-    "minutesActive": [number - minutes],
-    "flightsOfStairs": [number - flights]
-  },
-  ...more activity data
-]
-```
 
-**Hydration**
+---
+ ## Installation
+**Clone this repository**
+* `git clone`   https://github.com/alia-peterson/fitlit
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numOunces": [number - ounces]
-  },
-  ...more hydration data
-]
-```
+**Change into the directory and install the project dependencies**
 
-**Sleep**
+* `cd` into directory and run `npm install` for dependencies
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "hoursSlept": [number - hours],
-    "sleepQuality": [number - unitless]
-  },
-  ...more sleep data
-]
-```
+* run  `open index.html`
+
+
+ ## Technologies
+
+  - HTML
+  - CSS
+  - JavaScript
+  - Mocha & Chai
+  - ChartJS
+
+
+  This project was developed on macOS Catalina 11.0.6 and tested in Chrome browsers (Version 85.0.4183.83).
+
+
+
+ >[Back to Top](#fit-lit)
+
+## Desktop
+
+![Fit Lit Desktop ](https://media.giphy.com/media/ZblNGc2etfZkgIJe77/giphy.gif "Desktop")
+
+## Charts
+![Charts ](https://media.giphy.com/media/aFZDK5ggiDkzsR5K5J/giphy.gif "Charts")
+
+
+
+## Mobile
+
+![Mobile View](https://media.giphy.com/media/5qUtdL8Lp7mOout1H5/giphy.gif "Mobile View")
+
+
+
+
+ ## Challenges  
+
+ +
+
+
+
+---
+ ## Wins
+
+  +
+
+
+
+
+
+>[Back to Top](#fit-lit)
