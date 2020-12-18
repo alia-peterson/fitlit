@@ -360,6 +360,17 @@ th, td {
 }
 
 @media screen and (max-width: 425px) {
+  th, td {
+    min-width: 52px;
+  }
+
+  .box--banner,
+  .box--small,
+  .box--medium,
+  .box--large {
+    width: 80vw;
+  }
+
   .graph--display {
     height: 30vh;
     margin: 1vh 0 1vh 0;
